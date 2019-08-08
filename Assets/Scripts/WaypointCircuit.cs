@@ -8,7 +8,7 @@ using UnityEditor;
 
 namespace UnityStandardAssets.Utility
 {
-    public class WaypointCircuit : MonoBehaviour
+    public class WaypointRoute : MonoBehaviour
     {
         public WaypointList waypointList = new WaypointList();
         [SerializeField] private bool smoothRoute = true;
@@ -200,7 +200,7 @@ namespace UnityStandardAssets.Utility
         [Serializable]
         public class WaypointList
         {
-            public WaypointCircuit circuit;
+            public WaypointRoute circuit;
             public Transform[] items = new Transform[0];
         }
 
@@ -222,7 +222,7 @@ namespace UnityStandardAssets.Utility
 namespace UnityStandardAssets.Utility.Inspector
 {
 #if UNITY_EDITOR
-    [CustomPropertyDrawer(typeof (WaypointCircuit.WaypointList))]
+    [CustomPropertyDrawer(typeof (WaypointRoute.WaypointList))]
     public class WaypointListDrawer : PropertyDrawer
     {
         private float lineHeight = 18;
@@ -328,7 +328,7 @@ namespace UnityStandardAssets.Utility.Inspector
             var addAllButtonRect = new Rect(x, y, inspectorWidth, lineHeight);
             if (GUI.Button(addAllButtonRect, "Assign using all child objects"))
             {
-                var circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointCircuit;
+                var circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointRoute;
                 var children = new Transform[circuit.transform.childCount];
                 int n = 0;
                 foreach (Transform child in circuit.transform)
@@ -348,7 +348,7 @@ namespace UnityStandardAssets.Utility.Inspector
             var renameButtonRect = new Rect(x, y, inspectorWidth, lineHeight);
             if (GUI.Button(renameButtonRect, "Auto Rename numerically from this order"))
             {
-                var circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointCircuit;
+                var circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointRoute;
                 int n = 0;
                 foreach (Transform child in circuit.waypointList.items)
                 {
