@@ -14,6 +14,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("boom");
         if (other.gameObject.tag == "CamSwitch")
         {
             fpPlayer.SetActive(true);
