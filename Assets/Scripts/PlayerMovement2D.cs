@@ -8,9 +8,9 @@ public class PlayerMovement2D : MonoBehaviour
     Rigidbody body;
     Vector3 velocity;
 
-    [SerializeField] float speed;
-    [SerializeField] float sprintSpeed;
-    [SerializeField] float jumpForce;
+    [SerializeField] float speed = 200f;
+    [SerializeField] float sprintSpeed = 300f;
+    [SerializeField] float jumpForce = 200f;
 
     float horizontal;
     bool isGrounded;
