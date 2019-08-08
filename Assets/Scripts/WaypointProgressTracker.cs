@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.Utility
-{
     public class WaypointProgressTracker : MonoBehaviour
     {
         // This script can be used with any object that is supposed to follow a
@@ -11,7 +9,7 @@ namespace UnityStandardAssets.Utility
         // This script manages the amount to look ahead along the route,
         // and keeps track of progress and laps.
 
-        [SerializeField] private WaypointCircuit circuit; // A reference to the waypoint-based route we should follow
+        [SerializeField] private global::WaypointRoute circuit; // A reference to the waypoint-based route we should follow
 
         [SerializeField] private float lookAheadForTargetOffset = 5;
         // The offset ahead along the route that the we will aim for
@@ -38,9 +36,9 @@ namespace UnityStandardAssets.Utility
         }
 
         // these are public, readable by other objects - i.e. for an AI to know where to head!
-        public WaypointCircuit.RoutePoint targetPoint { get; private set; }
-        public WaypointCircuit.RoutePoint speedPoint { get; private set; }
-        public WaypointCircuit.RoutePoint progressPoint { get; private set; }
+        public WaypointRoute.RoutePoint targetPoint { get; private set; }
+        public WaypointRoute.RoutePoint speedPoint { get; private set; }
+        public WaypointRoute.RoutePoint progressPoint { get; private set; }
 
         public Transform target;
 
@@ -149,4 +147,3 @@ namespace UnityStandardAssets.Utility
             }
         }
     }
-}
