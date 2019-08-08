@@ -6,6 +6,8 @@ using UnityEngine;
 public class CameraSwitcher : MonoBehaviour
 {
     [SerializeField] float waitTime = 5f;
+    [SerializeField] Camera cameraFP;
+    [SerializeField] Camera camera2D;
 
     PlayerMovement2D controller2D;
     Rigidbody rb;
@@ -26,22 +28,17 @@ public class CameraSwitcher : MonoBehaviour
 
         // initally set FP controls to OFF
         controllerFP.enabled = false;
+        cameraFP.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "CamSwitch")
         {
-            MoveCamera();
             ToggleFP();
             Toggle2D();
             Destroy(other.gameObject); //destory pickip
         }
-    }
-
-    private void MoveCamera()
-    {
-        return;
     }
 
     private void ToggleFP()
@@ -51,6 +48,8 @@ public class CameraSwitcher : MonoBehaviour
         // Controlls script and rigidbody attributes/enabled status
         if (activeFP)
         {
+            cameraFP.transform.rotation = Quaternion.identity;
+
             rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
             animate.SetTrigger("Zoom In");
 
