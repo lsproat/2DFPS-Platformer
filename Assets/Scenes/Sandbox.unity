@@ -699,37 +699,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0000002, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!1 &1683577642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4620505925342335377, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
-    type: 3}
-  m_PrefabInstance: {fileID: 6765321162764205746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1683577643 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2273125305393830802, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
     type: 3}
   m_PrefabInstance: {fileID: 6765321162764205746}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1683577644
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683577642}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8655bc7b8d83037409d5de53b3e5babb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2104614425
 PrefabInstance:
   m_ObjectHideFlags: 0
