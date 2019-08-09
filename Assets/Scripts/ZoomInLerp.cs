@@ -5,9 +5,8 @@ using UnityEngine;
 public class ZoomInLerp : MonoBehaviour
 {
     [SerializeField] private Transform endObject;
-
-
     [SerializeField] private float lerpTime = 1f;
+
     float currentLerpTime;
     float moveDistance;
 

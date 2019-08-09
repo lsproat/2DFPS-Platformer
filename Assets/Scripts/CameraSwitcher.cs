@@ -43,33 +43,28 @@ public class CameraSwitcher : MonoBehaviour
     {
         if (other.gameObject.tag == "CamSwitch")
         {
-            AdjustPlayerPosition(other.transform.position);
-            ToggleFP();
-            Toggle2D();
+            AdjustPlayerPosition(); // removes velocity so player does not fall off level
+            ChangePerspective();
             Destroy(other.gameObject); //destory pickip
         }
     }
 
-    private void AdjustPlayerPosition(Vector3 pos)
+
+    private void AdjustPlayerPosition()
     {
         rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-        gameObject.transform.position = pos;
         rb.constraints = ~(RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY);
     }
 
-    private void ToggleFP()
+    private void ChangePerspective()
     {
-        activeFP = !activeFP; // used to toggle for next pickup
-
-        if (activeFP) StartCoroutine(LerpingIN());
-    }
-
-
-    private void Toggle2D()
-    {
+        // used to toggle for next pickup
+        activeFP = !activeFP; 
         active2D = !active2D;
 
-        if (active2D) StartCoroutine(LerpingOUT());
+        if (activeFP) StartCoroutine(LerpingIN());
+        else if (active2D) StartCoroutine(LerpingOUT());
+
     }
 
 
@@ -103,7 +98,6 @@ public class CameraSwitcher : MonoBehaviour
     {
         controllerFP.enabled = true;
         gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // TODO: (doesnt work) Keep direction same when switching to FP
-
         rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
     }
 
@@ -113,10 +107,8 @@ public class CameraSwitcher : MonoBehaviour
         rb.drag = 0.0f; //FP controller alters this value
 
         cameraMain.transform.rotation = Quaternion.Euler(0f, 270f, 0f);
-
         gameObject.transform.position = new Vector3(0, transform.position.y, transform.position.z); // ensure 0 X pos when FP -> 2D
-
         rb.constraints = RigidbodyConstraints.FreezePositionX;
-        rb.freezeRotation = true;
+        rb.freezeRotation = true; // TODO: Will this mess with player model FP animations?
     }
 }
