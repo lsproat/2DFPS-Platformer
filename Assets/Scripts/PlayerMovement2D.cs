@@ -27,6 +27,7 @@ public class PlayerMovement2D : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         if (Input.GetAxis("Jump") > 0)
         {
+
             if (isGrounded)
             {
                 body.AddForce(transform.up * jumpForce);
@@ -59,5 +60,10 @@ public class PlayerMovement2D : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    private void OnEnable()
+    {
+        isGrounded = true;
     }
 }

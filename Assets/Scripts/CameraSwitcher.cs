@@ -83,6 +83,7 @@ public class CameraSwitcher : MonoBehaviour
 
         lerpIN.enabled = true;
         yield return new WaitForSeconds(coroutineWaitTime);
+
         lerpIN.enabled = false;
         ToggleControlFP();
 
@@ -90,8 +91,9 @@ public class CameraSwitcher : MonoBehaviour
 
     private void ToggleControlFP()
     {
-            controllerFP.enabled = true;
-            gameObject.transform.rotation = Quaternion.identity;
+        controllerFP.enabled = true;
+        gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // Keep direction same when switching to FP
+        // gameObject.transform.rotation = Quaternion.identity;
 
             rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
     }
