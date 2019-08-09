@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class CameraSwitcher : MonoBehaviour
 {
-    [SerializeField] float waitTime = 5f;
+    [SerializeField] GameObject cameraMain;
+    [SerializeField] float coroutineWaitTime = 5;
 
     PlayerMovement2D controller2D;
     Rigidbody rb;
     UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController controllerFP;
-    Animator animate;
+
+    ZoomInLerp lerpIN;
+    ZoomOutLerp lerpOUT;
 
     // These handle the logic for toggling controllers and camera direction 
     bool activeFP = false;
     bool active2D = true;
+
+   // public bool lerpingIN = false;
+  //  public bool lerpingOUT = false;
+
 
     private void Awake()
     {
@@ -22,59 +29,83 @@ public class CameraSwitcher : MonoBehaviour
         controller2D = gameObject.GetComponent<PlayerMovement2D>();
         controllerFP = gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>();
         rb = gameObject.GetComponent<Rigidbody>();
-        animate = gameObject.GetComponentInChildren<Animator>();
+        lerpIN = cameraMain.GetComponent<ZoomInLerp>();
+        lerpOUT = cameraMain.GetComponent<ZoomOutLerp>();
 
         // initally set FP controls to OFF
         controllerFP.enabled = false;
+
+        //disable Lerps
+        lerpIN.enabled = false;
+        lerpOUT.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "CamSwitch")
         {
-            MoveCamera();
             ToggleFP();
             Toggle2D();
             Destroy(other.gameObject); //destory pickip
         }
     }
 
-    private void MoveCamera()
-    {
-        return;
-    }
-
     private void ToggleFP()
     {
         activeFP = !activeFP; // used to toggle for next pickup
 
-        // Controlls script and rigidbody attributes/enabled status
-        if (activeFP)
-        {
-            rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
-            animate.SetTrigger("Zoom In");
-
-        }
-        rb.freezeRotation = true;  // TODO: Affects FP controls??
-        controllerFP.enabled = activeFP;
+        if (activeFP) StartCoroutine(LerpingIN());
     }
+
 
     private void Toggle2D()
     {
         active2D = !active2D;
 
-        if (active2D)
-        {
-            rb.constraints = RigidbodyConstraints.FreezePositionX;
-            animate.SetTrigger("Zoom Out");
-
-        }
-        rb.freezeRotation = true; 
-        controller2D.enabled = active2D;
+        if (active2D) StartCoroutine(LerpingOUT());
     }
 
-    IEnumerator WaitForCamera()
+    IEnumerator LerpingOUT()
     {
-        yield return new WaitForSeconds(waitTime);
+        controllerFP.enabled = false; //Stop player control
+        gameObject.transform.rotation = Quaternion.identity; // reset parent rotation
+
+        lerpOUT.enabled = true;
+        yield return new WaitForSeconds(coroutineWaitTime);
+        lerpOUT.enabled = false;
+        ToggleControl2D();
+
+    }
+
+    IEnumerator LerpingIN()
+    {
+        controller2D.enabled = false; //Stop player control
+
+        lerpIN.enabled = true;
+        yield return new WaitForSeconds(coroutineWaitTime);
+        lerpIN.enabled = false;
+        ToggleControlFP();
+
+    }
+
+    private void ToggleControlFP()
+    {
+            controllerFP.enabled = true;
+            gameObject.transform.rotation = Quaternion.identity;
+
+            rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
+    }
+
+    private void ToggleControl2D()
+    {
+        controller2D.enabled = true;
+        rb.drag = 0.0f; //FP cntroller alters this value
+
+        cameraMain.transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+
+        gameObject.transform.position = new Vector3(0, transform.position.y, transform.position.z); // ensure 0 X pos when FP -> 2D
+
+        rb.constraints = RigidbodyConstraints.FreezePositionX;
+        rb.freezeRotation = true;
     }
 }

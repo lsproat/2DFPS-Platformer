@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1144135231989365389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2504145583938330796}
+  m_Layer: 0
+  m_Name: FP Cam Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2504145583938330796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144135231989365389}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6765321161334785120}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3868286541994257514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8037687294334854769}
+  m_Layer: 0
+  m_Name: 2D Cam Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8037687294334854769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868286541994257514}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.365978, y: 4.0797024, z: -7.800078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6765321161334785120}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4620505925342335377
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +71,8 @@ GameObject:
   - component: {fileID: 5853900310359269478}
   - component: {fileID: 2273125305393830802}
   - component: {fileID: 5596868015306229837}
+  - component: {fileID: 1119952799001568960}
+  - component: {fileID: 7153461288195066160}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -30,7 +92,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6765321161334785120}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2273125305393830802
 Camera:
@@ -83,6 +145,34 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4620505925342335377}
   m_Enabled: 1
+--- !u!114 &1119952799001568960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620505925342335377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cdbdf512fa07a4d8b5acba515686d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endPos: {fileID: 8037687294334854769}
+  speed: 3
+--- !u!114 &7153461288195066160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620505925342335377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e64266fee70244bbf132e50833e836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endPos: {fileID: 2504145583938330796}
+  speed: 3
 --- !u!1 &6765321161334785151
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,8 +205,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 8.542, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5853900310359269478}
   - {fileID: 1342794266061990738}
+  - {fileID: 5853900310359269478}
+  - {fileID: 8037687294334854769}
+  - {fileID: 2504145583938330796}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,7 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847c7eb56e3d703409572cbaeaeccfba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 5
+  cameraMain: {fileID: 4620505925342335377}
+  coroutineWaitTime: 3
 --- !u!54 &5474253334099789758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -175,14 +268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c9795a96c094f4cbde4d65546aa9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 2273125305393830802}
   movementSettings:
     ForwardSpeed: 8
     BackwardSpeed: 4
     StrafeSpeed: 4
     RunMultiplier: 2
     RunKey: 304
-    JumpForce: 30
+    JumpForce: 7
     SlopeCurveModifier:
       serializedVersion: 2
       m_Curve:
@@ -277,7 +370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6765321161334785120}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4324151115098375441
 MeshFilter:
