@@ -43,10 +43,18 @@ public class CameraSwitcher : MonoBehaviour
     {
         if (other.gameObject.tag == "CamSwitch")
         {
+            AdjustPlayerPosition(other.transform.position);
             ToggleFP();
             Toggle2D();
             Destroy(other.gameObject); //destory pickip
         }
+    }
+
+    private void AdjustPlayerPosition(Vector3 pos)
+    {
+        rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        gameObject.transform.position = pos;
+        rb.constraints = ~(RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY);
     }
 
     private void ToggleFP()
@@ -71,7 +79,7 @@ public class CameraSwitcher : MonoBehaviour
 
         lerpIN.enabled = true;                              // start camera lerp
         lerpCamView.ChangeProjection = true;                // start camera perspective lerp 
-        yield return new WaitForSeconds(coroutineWaitTime); // wait before enabling control
+        yield return new WaitForSeconds(coroutineWaitTime); // (CAN CUT OFF LERP PROGRESS) wait before enabling control
 
         lerpIN.enabled = false;                             
         ToggleControlFP();                                  // enable FP controls
