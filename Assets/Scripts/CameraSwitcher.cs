@@ -19,9 +19,7 @@ public class CameraSwitcher : MonoBehaviour
     bool activeFP = false;
     bool active2D = true;
 
-   // public bool lerpingIN = false;
-  //  public bool lerpingOUT = false;
-
+    CameraProjectionChange lerpCamView;
 
     private void Awake()
     {
@@ -31,6 +29,7 @@ public class CameraSwitcher : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         lerpIN = cameraMain.GetComponent<ZoomInLerp>();
         lerpOUT = cameraMain.GetComponent<ZoomOutLerp>();
+        lerpCamView = gameObject.GetComponentInChildren<CameraProjectionChange>();
 
         // initally set FP controls to OFF
         controllerFP.enabled = false;
@@ -71,6 +70,7 @@ public class CameraSwitcher : MonoBehaviour
         gameObject.transform.rotation = Quaternion.identity; // reset parent rotation
 
         lerpOUT.enabled = true;
+        lerpCamView.ChangeProjection = true;
         yield return new WaitForSeconds(coroutineWaitTime);
         lerpOUT.enabled = false;
         ToggleControl2D();
@@ -82,6 +82,7 @@ public class CameraSwitcher : MonoBehaviour
         controller2D.enabled = false; //Stop player control
 
         lerpIN.enabled = true;
+        lerpCamView.ChangeProjection = true;
         yield return new WaitForSeconds(coroutineWaitTime);
 
         lerpIN.enabled = false;
@@ -92,8 +93,7 @@ public class CameraSwitcher : MonoBehaviour
     private void ToggleControlFP()
     {
         controllerFP.enabled = true;
-        gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // Keep direction same when switching to FP
-        // gameObject.transform.rotation = Quaternion.identity;
+        gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // TODO: (doesnt work) Keep direction same when switching to FP
 
             rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
     }
