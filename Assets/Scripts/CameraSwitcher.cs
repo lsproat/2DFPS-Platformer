@@ -11,6 +11,7 @@ public class CameraSwitcher : MonoBehaviour
     PlayerMovement2D controller2D;
     Rigidbody rb;
     UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController controllerFP;
+    CameraProjectionChange lerpCamView;
 
     ZoomInLerp lerpIN;
     ZoomOutLerp lerpOUT;
@@ -19,7 +20,6 @@ public class CameraSwitcher : MonoBehaviour
     bool activeFP = false;
     bool active2D = true;
 
-    CameraProjectionChange lerpCamView;
 
     private void Awake()
     {
@@ -64,9 +64,23 @@ public class CameraSwitcher : MonoBehaviour
         if (active2D) StartCoroutine(LerpingOUT());
     }
 
+
+    IEnumerator LerpingIN()
+    {
+        controller2D.enabled = false;                       //Stop player control
+
+        lerpIN.enabled = true;                              // start camera lerp
+        lerpCamView.ChangeProjection = true;                // start camera perspective lerp 
+        yield return new WaitForSeconds(coroutineWaitTime); // wait before enabling control
+
+        lerpIN.enabled = false;                             
+        ToggleControlFP();                                  // enable FP controls
+
+    }
+
     IEnumerator LerpingOUT()
     {
-        controllerFP.enabled = false; //Stop player control
+        controllerFP.enabled = false;
         gameObject.transform.rotation = Quaternion.identity; // reset parent rotation
 
         lerpOUT.enabled = true;
@@ -77,31 +91,18 @@ public class CameraSwitcher : MonoBehaviour
 
     }
 
-    IEnumerator LerpingIN()
-    {
-        controller2D.enabled = false; //Stop player control
-
-        lerpIN.enabled = true;
-        lerpCamView.ChangeProjection = true;
-        yield return new WaitForSeconds(coroutineWaitTime);
-
-        lerpIN.enabled = false;
-        ToggleControlFP();
-
-    }
-
     private void ToggleControlFP()
     {
         controllerFP.enabled = true;
         gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // TODO: (doesnt work) Keep direction same when switching to FP
 
-            rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
+        rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
     }
 
     private void ToggleControl2D()
     {
         controller2D.enabled = true;
-        rb.drag = 0.0f; //FP cntroller alters this value
+        rb.drag = 0.0f; //FP controller alters this value
 
         cameraMain.transform.rotation = Quaternion.Euler(0f, 270f, 0f);
 

@@ -4,13 +4,41 @@ using UnityEngine;
 
 public class ZoomInLerp : MonoBehaviour
 {
-    [SerializeField] private Transform endPos;
+    [SerializeField] private Transform endObject;
 
-    [SerializeField] private float speed = 2f;
 
-    void Update()
+    [SerializeField] private float lerpTime = 1f;
+    float currentLerpTime;
+    float moveDistance;
+
+    Vector3 startPos;
+    Vector3 endPos;
+
+    Quaternion startRot;
+    Quaternion endRot;
+
+    protected void Start()
     {
-        gameObject.transform.position = Vector3.Lerp(transform.position, endPos.position, speed * Time.deltaTime);
-        gameObject.transform.rotation = Quaternion.Lerp(transform.rotation, endPos.rotation, speed * Time.deltaTime);
+        float moveDistance = Vector3.Distance(transform.position, endObject.position);
+        startPos = transform.position;
+        startRot = transform.rotation;
+    }
+
+    protected void Update()
+    {
+        endRot = endObject.rotation;
+        endPos = endObject.transform.position;
+
+        //increment timer once per frame
+        currentLerpTime += Time.deltaTime;
+        if (currentLerpTime > lerpTime)
+        {
+            currentLerpTime = lerpTime;
+        }
+
+        //lerp!
+        float perc = currentLerpTime / lerpTime;
+        transform.position = Vector3.Lerp(startPos, endPos, perc);
+        transform.rotation = Quaternion.Lerp(startRot, endRot, perc);
     }
 }
