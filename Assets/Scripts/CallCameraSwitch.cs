@@ -6,6 +6,6 @@ public class CallCameraSwitch : MonoBehaviour
 {
     public void CallToggleCameras()
     {
-        GetComponentInParent<CameraSwitcher>().ToggleCameras();
+        return; // GetComponentInParent<CameraSwitcher>().ToggleCameras();
     }
 }
