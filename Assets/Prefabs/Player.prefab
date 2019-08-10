@@ -158,8 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cdbdf512fa07a4d8b5acba515686d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPos: {fileID: 8037687294334854769}
-  speed: 3
+  endObject: {fileID: 0}
+  lerpTime: 1
 --- !u!114 &7153461288195066160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e64266fee70244bbf132e50833e836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPos: {fileID: 2504145583938330796}
-  speed: 3
+  endObject: {fileID: 0}
+  lerpTime: 1
 --- !u!114 &9154055634871567233
 MonoBehaviour:
   m_ObjectHideFlags: 0

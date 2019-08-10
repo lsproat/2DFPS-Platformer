@@ -17,17 +17,15 @@ public class PlayerMovement2D : MonoBehaviour
 
     void Start()
     {
-        // Obtain the reference to our Rigidbody.
         body = GetComponent<Rigidbody>();
-
     }
 
     void FixedUpdate()
     {
+        Debug.Log(isGrounded);
         horizontal = Input.GetAxis("Horizontal");
         if (Input.GetAxis("Jump") > 0)
         {
-
             if (isGrounded)
             {
                 body.AddForce(transform.up * jumpForce);
