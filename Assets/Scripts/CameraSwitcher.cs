@@ -8,9 +8,10 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] GameObject cameraMain;
     [SerializeField] float coroutineWaitTime = 5;
 
-    PlayerMovement2D controller2D;
+    [SerializeField] GameObject controllerFP;
+    [SerializeField] GameObject controller2D;
+
     Rigidbody rb;
-    UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController controllerFP;
     CameraProjectionChange lerpCamView;
 
     ZoomInLerp lerpIN;
@@ -24,15 +25,13 @@ public class CameraSwitcher : MonoBehaviour
     private void Awake()
     {
         //Initiliaze all GetComponet calls
-        controller2D = gameObject.GetComponent<PlayerMovement2D>();
-        controllerFP = gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>();
-        rb = gameObject.GetComponent<Rigidbody>();
+        rb = gameObject.GetComponentInChildren<Rigidbody>();
         lerpIN = cameraMain.GetComponent<ZoomInLerp>();
         lerpOUT = cameraMain.GetComponent<ZoomOutLerp>();
         lerpCamView = gameObject.GetComponentInChildren<CameraProjectionChange>();
 
         // initally set FP controls to OFF
-        controllerFP.enabled = false;
+        controllerFP.SetActive(false);
 
         //disable Lerps
         lerpIN.enabled = false;
@@ -70,7 +69,7 @@ public class CameraSwitcher : MonoBehaviour
 
     IEnumerator LerpingIN()
     {
-        controller2D.enabled = false;                       //Stop player control
+        controller2D.SetActive(false);                      //Stop player control
 
         lerpIN.enabled = true;                              // start camera lerp
         lerpCamView.ChangeProjection = true;                // start camera perspective lerp 
@@ -83,7 +82,7 @@ public class CameraSwitcher : MonoBehaviour
 
     IEnumerator LerpingOUT()
     {
-        controllerFP.enabled = false;
+        controllerFP.SetActive(false);
         gameObject.transform.rotation = Quaternion.identity; // reset parent rotation
 
         lerpOUT.enabled = true;
@@ -96,19 +95,19 @@ public class CameraSwitcher : MonoBehaviour
 
     private void ToggleControlFP()
     {
-        controllerFP.enabled = true;
+        controllerFP.SetActive(true);
         gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // TODO: (doesnt work) Keep direction same when switching to FP
-        rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
+        rb.constraints &= ~RigidbodyConstraints.FreezePositionZ;
     }
 
     private void ToggleControl2D()
     {
-        controller2D.enabled = true;
+        controller2D.SetActive(true);
         rb.drag = 0.0f; //FP controller alters this value
 
-        cameraMain.transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+        cameraMain.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         gameObject.transform.position = new Vector3(0, transform.position.y, transform.position.z); // ensure 0 X pos when FP -> 2D
-        rb.constraints = RigidbodyConstraints.FreezePositionX;
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
         rb.freezeRotation = true; // TODO: Will this mess with player model FP animations?
     }
 }
