@@ -24,7 +24,7 @@ public class CameraSwitcher : MonoBehaviour
     private void Awake()
     {
         //Initiliaze all GetComponet calls
-        rb = controllerFP.GetComponent<Rigidbody>();
+        rb = gameObject.GetComponentInParent<Rigidbody>();
         lerpIN = cameraMain.GetComponent<ZoomInLerp>();
         lerpOUT = cameraMain.GetComponent<ZoomOutLerp>();
         lerpCamView = gameObject.GetComponentInChildren<CameraProjectionChange>();
