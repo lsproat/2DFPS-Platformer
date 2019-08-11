@@ -21,13 +21,19 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float sprintBuildUpSpeed;
     [SerializeField] private KeyCode sprintKey;
 
+    private InputManager inputManager;
     private CharacterController charController;
     private float movementSpeed;
     private bool isJumping;
 
+    private float vertInput;
+    private float horizInput;
+
     private void Awake()
     {
+        inputManager = GetComponentInParent<InputManager>();
         charController = GetComponentInParent<CharacterController>();
+        
     }
 
     // Update is called once per frame
@@ -40,9 +46,18 @@ public class PlayerMove : MonoBehaviour
     {
         SetMovementSpeed();
 
-        // Because of how the 2D system works, the horizontalInputName and verticalInputName need to be switched
-        float vertInput = -(Input.GetAxis(horizontalInputName));
-        float horizInput = Input.GetAxis(verticalInputName);
+        if (inputManager.inputActive)
+        {
+            // Because of how the 2D system works, the horizontalInputName and verticalInputName need to be switched
+            vertInput = -(Input.GetAxis(horizontalInputName));
+            horizInput = Input.GetAxis(verticalInputName);
+        }
+        else
+        {
+            vertInput = 0f;
+            horizInput = 0f;
+        }
+
 
         Vector3 forwardMovement = playerParent.transform.forward * vertInput;
         Vector3 rightMovement = playerParent.transform.right * horizInput;

@@ -106,7 +106,7 @@ MonoBehaviour:
   slopeForce: 5
   slopeForceRayLength: 1.5
   walkSpeed: 6
-  sprintSpeed: 9
+  sprintSpeed: 10
   sprintBuildUpSpeed: 4
   sprintKey: 304
 --- !u!114 &3703969492290938626

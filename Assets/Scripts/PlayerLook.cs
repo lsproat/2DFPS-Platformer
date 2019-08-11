@@ -8,6 +8,7 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private Transform playerBody;
     [SerializeField] private string mouseXInputName, mouseYInputName;
 
+    private InputManager inputManager;
 
     private float xAxisClamp;
 
@@ -15,6 +16,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Awake()
     {
+        inputManager = GetComponentInParent<InputManager>();
         LockCursor(); // TODO: Affects 2D?
         xAxisClamp = 0;
     }
@@ -26,7 +28,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        CameraRoation();
+        if(inputManager.inputActive) CameraRoation();
     }
 
     private void CameraRoation()
