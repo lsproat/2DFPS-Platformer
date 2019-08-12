@@ -20,11 +20,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float sprintBuildUpSpeed;
     [SerializeField] private KeyCode sprintKey;
+    [SerializeField] private KeyCode crouchKey;
 
     Vector3 moveDirection;
 
     private InputManager inputManager;
     private CharacterController charController;
+    private Camera cam;
+    private Vector3 camOrginalPosition;
     private float movementSpeed;
     private bool isJumping;
 
@@ -34,13 +37,15 @@ public class PlayerMove : MonoBehaviour
     private float jumpedHorizInput;
     private float lastFrameVertInput = 0;
     private float lastFrameHorizInput = 0;
+    private float xVelocity = 0.3f;
 
 
     private void Awake()
     {
         inputManager = GetComponentInParent<InputManager>();
         charController = GetComponentInParent<CharacterController>();
-        
+        cam = playerParent.GetComponentInChildren<Camera>();
+
     }
 
     // Update is called once per frame
@@ -90,6 +95,11 @@ public class PlayerMove : MonoBehaviour
                 jumpedHorizInput = horizInput;
                 jumpedVertInput = vertInput;
             }
+            else if (Input.GetKeyDown(crouchKey) && movementSpeed > 0f) //&& vertInput > 0f)
+            {
+                camOrginalPosition = cam.transform.localPosition;
+                // ProcessCrouchAndSlide(); NEEDS WORK
+            }
         }
         else if (!charController.isGrounded) // In air movement
         {
@@ -110,6 +120,24 @@ public class PlayerMove : MonoBehaviour
         }
         moveDirection.y -= gravity * Time.deltaTime;
         charController.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void ProcessCrouchAndSlide()
+    {
+        if (Input.GetKeyUp(crouchKey)) cam.transform.localPosition = camOrginalPosition;
+        else if (movementSpeed <= walkSpeed)
+        {
+            // crouch
+            cam.transform.localPosition = new Vector3(0f, 0.45f, 0f);
+        }
+        else if (movementSpeed >= sprintSpeed)
+        {
+            // slide
+            moveDirection.z = 0f;
+            cam.transform.localPosition = new Vector3(0f, 0.45f, 0f);
+            moveDirection.x = Mathf.SmoothDamp(moveDirection.x, 0f, ref movementSpeed, .1f);
+        }
+        
     }
 
     private void SetMovementSpeed()

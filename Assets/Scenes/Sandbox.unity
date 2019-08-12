@@ -5604,6 +5604,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2769824905659252948, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
+        type: 3}
+      propertyPath: crouchKey
+      value: 306
+      objectReference: {fileID: 0}
     - target: {fileID: 5921252170606538228, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
         type: 3}
       propertyPath: jumps
