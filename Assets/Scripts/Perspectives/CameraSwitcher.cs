@@ -12,7 +12,7 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] GameObject controller2D;
 
     InputManager inputManager;
-    CameraProjectionChange lerpCamView;
+    PerspectiveSwitcher lerpCamView;
     ZoomInLerp lerpIN;
     ZoomOutLerp lerpOUT;
 
@@ -25,7 +25,7 @@ public class CameraSwitcher : MonoBehaviour
     {
         //Initiliaze all GetComponet calls
         inputManager = GetComponentInParent<InputManager>();
-        lerpCamView = gameObject.GetComponentInChildren<CameraProjectionChange>();
+        lerpCamView = gameObject.GetComponentInChildren<PerspectiveSwitcher>();
         lerpIN = cameraMain.GetComponent<ZoomInLerp>();
         lerpOUT = cameraMain.GetComponent<ZoomOutLerp>();
 
@@ -88,7 +88,7 @@ public class CameraSwitcher : MonoBehaviour
     private void ToggleControlFP()
     {
         controllerFP.SetActive(true);
-        gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // TODO: (doesnt work) Keep direction same when switching to FP
+        //gameObject.transform.rotation = Quaternion.Euler(0f, 360f, 0f); // TODO: (doesnt work) Keep direction same when switching to FP
     }
 
     private void ToggleControl2D()

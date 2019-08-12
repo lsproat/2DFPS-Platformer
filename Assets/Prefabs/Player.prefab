@@ -77,31 +77,8 @@ MonoBehaviour:
   playerParent: {fileID: 6765321161334785151}
   horizontalInputName: Horizontal
   verticalInputName: Vertical
-  jumpFallOff:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0013122556
-      value: 1.0023501
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.70076567
-      value: 0
-      inSlope: -0.42903107
-      outSlope: -0.42903107
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.15725549
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  jumpMultiplier: 6
+  jumpSpeed: 8
+  gravity: 20
   jumpKey: 32
   slopeForce: 5
   slopeForceRayLength: 1.5
@@ -169,7 +146,8 @@ GameObject:
   - component: {fileID: 5596868015306229837}
   - component: {fileID: 1119952799001568960}
   - component: {fileID: 7153461288195066160}
-  - component: {fileID: 9154055634871567233}
+  - component: {fileID: 8981210604826252128}
+  - component: {fileID: 5840920230442408210}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -270,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endObject: {fileID: 2504145583938330796}
   lerpTime: 3
---- !u!114 &9154055634871567233
+--- !u!114 &8981210604826252128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,10 +257,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 4620505925342335377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f124e5bab679d0140853a68e9d9bf739, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dcc81928ac26a84fbdbab828ccec619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectionChangeTime: 3
+--- !u!114 &5840920230442408210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620505925342335377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550bfe6315c94fb4c9aba30a3dc93bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fov: 90
+  near: 0.001
+  far: 1000
+  orthographicSize: 12
+  toOrthoDuration: 5
+  toPerspecDuration: 4
+  toOrthoEase: 4
+  toPerspecEase: 0.75
   ChangeProjection: 0
 --- !u!1 &6765321161334785151
 GameObject:
