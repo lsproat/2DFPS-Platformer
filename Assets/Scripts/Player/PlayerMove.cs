@@ -32,6 +32,9 @@ public class PlayerMove : MonoBehaviour
     private float horizInput;
     private float jumpedVertInput;
     private float jumpedHorizInput;
+    private float lastFrameVertInput = 0;
+    private float lastFrameHorizInput = 0;
+
 
     private void Awake()
     {
@@ -61,13 +64,16 @@ public class PlayerMove : MonoBehaviour
             vertInput = 0f;
             horizInput = 0f;
         }
-
         MoveAndJump();
 
         if ((vertInput != 0 || horizInput != 0) && OnSlope())
         {
             charController.Move(Vector3.down * charController.height / 2 * slopeForce * Time.deltaTime);
         }
+
+        lastFrameHorizInput = horizInput;
+        lastFrameVertInput = vertInput;
+
     }
 
     private void MoveAndJump()
@@ -87,11 +93,14 @@ public class PlayerMove : MonoBehaviour
         }
         else if (!charController.isGrounded) // In air movement
         {
-            if (Input.GetAxis(horizontalInputName) < 1 && Input.GetAxis(verticalInputName) < 1)
+            // If player stops input mid-air, continue momentum
+            if (Mathf.Abs(Input.GetAxis(horizontalInputName)) < 1 && Mathf.Abs(Input.GetAxis(verticalInputName)) < 1)
             {
-                moveDirection.x = jumpedHorizInput * movementSpeed;
-                moveDirection.z = jumpedVertInput * movementSpeed;
+                moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed * 0.8f;
+                moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed * 0.8f;
+                Debug.Log(true);
             }
+            // enable in air control
             else
             {
                 moveDirection.x = horizInput * movementSpeed;
@@ -123,4 +132,12 @@ public class PlayerMove : MonoBehaviour
         }
         return false;
     }
+
+
+
+
+
+
+
+
 }
