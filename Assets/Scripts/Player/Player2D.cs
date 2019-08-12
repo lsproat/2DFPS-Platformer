@@ -50,8 +50,6 @@ public class Player2D : MonoBehaviour
         }
         else input = new Vector2(0.0f, 0.0f);
 
-        Debug.Log(input);
-
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
