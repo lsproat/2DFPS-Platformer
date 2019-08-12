@@ -6,6 +6,7 @@ public class Player2D : MonoBehaviour
 {
     public float jumpHeight = 3.5f;
     public float timeToJumpApex = 0.4f;
+    public float jumps = 1;
     float accelerationTimeAirborne = 0.2f;
     float accelerationTimeGrounded = 0.1f;
     float moveSpeed = 6f;
@@ -43,10 +44,12 @@ public class Player2D : MonoBehaviour
         {
             input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below) // TODO: Universal input??
+            if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below || jumps > 0)) // TODO: Universal input??
             {
                 velocity.y = jumpVelocity;
+                jumps--;
             }
+            if (controller.collisions.below) jumps = 1;
         }
         else input = new Vector2(0.0f, 0.0f);
 
