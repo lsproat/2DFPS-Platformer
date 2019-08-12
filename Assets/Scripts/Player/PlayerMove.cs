@@ -30,6 +30,8 @@ public class PlayerMove : MonoBehaviour
 
     private float vertInput;
     private float horizInput;
+    private float jumpedVertInput;
+    private float jumpedHorizInput;
 
     private void Awake()
     {
@@ -76,12 +78,25 @@ public class PlayerMove : MonoBehaviour
             moveDirection.Normalize();
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
             moveDirection *= movementSpeed;
-            if (Input.GetKeyDown(jumpKey)) moveDirection.y = jumpSpeed;
+            if (Input.GetKeyDown(jumpKey))
+            {
+                moveDirection.y = jumpSpeed;
+                jumpedHorizInput = horizInput;
+                jumpedVertInput = vertInput;
+            }
         }
         else if (!charController.isGrounded) // In air movement
         {
-            moveDirection.x = horizInput * movementSpeed;
-            moveDirection.z = vertInput * movementSpeed;
+            if (Input.GetAxis(horizontalInputName) < 1 && Input.GetAxis(verticalInputName) < 1)
+            {
+                moveDirection.x = jumpedHorizInput * movementSpeed;
+                moveDirection.z = jumpedVertInput * movementSpeed;
+            }
+            else
+            {
+                moveDirection.x = horizInput * movementSpeed;
+                moveDirection.z = vertInput * movementSpeed;
+            }
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
         }
         moveDirection.y -= gravity * Time.deltaTime;
