@@ -39,7 +39,6 @@ public class PlayerMove : MonoBehaviour
     private float lastFrameHorizInput = 0;
     private float xVelocity = 0.3f;
 
-
     private void Awake()
     {
         inputManager = GetComponentInParent<InputManager>();
@@ -68,6 +67,9 @@ public class PlayerMove : MonoBehaviour
         {
             vertInput = 0f;
             horizInput = 0f;
+            movementSpeed = 0;
+            moveDirection.x = 0f;
+            moveDirection.z = 0f;
         }
         MoveAndJump();
 
@@ -106,8 +108,8 @@ public class PlayerMove : MonoBehaviour
             // If player stops input mid-air, continue momentum
             if (Mathf.Abs(Input.GetAxis(horizontalInputName)) < 1 && Mathf.Abs(Input.GetAxis(verticalInputName)) < 1)
             {
-                moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed * 0.8f;
-                moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed * 0.8f;
+                moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed;
+                moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed;
                 Debug.Log(true);
             }
             // enable in air control
@@ -118,6 +120,7 @@ public class PlayerMove : MonoBehaviour
             }
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
         }
+
         moveDirection.y -= gravity * Time.deltaTime;
         charController.Move(moveDirection * Time.deltaTime);
     }
@@ -160,12 +163,4 @@ public class PlayerMove : MonoBehaviour
         }
         return false;
     }
-
-
-
-
-
-
-
-
 }

@@ -47,7 +47,6 @@ public class CameraSwitcher : MonoBehaviour
         }
     }
 
-
     private void ChangePerspective()
     {
         // used to toggle for next pickup
