@@ -70,6 +70,8 @@ public class PlayerMove : MonoBehaviour
         }
         MoveAndJump();
 
+
+        // Checks if going down a slope and smooths downward movement
         if ((vertInput != 0 || horizInput != 0) && OnSlope())
         {
             charController.Move(Vector3.down * charController.height / 2 * slopeForce * Time.deltaTime);
@@ -80,6 +82,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (charController.isGrounded) // On ground movement
         {
+            moveDirection = Vector3.zero;
             moveDirection = new Vector3(horizInput, 0f, vertInput);
             moveDirection.Normalize();
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
@@ -98,6 +101,7 @@ public class PlayerMove : MonoBehaviour
         }
         else if (!charController.isGrounded) // In air movement
         {
+            
             // If player stops input mid-air, continue momentum
             if (Mathf.Abs(Input.GetAxis(horizontalInputName)) < 1 && Mathf.Abs(Input.GetAxis(verticalInputName)) < 1)
             {
@@ -111,6 +115,7 @@ public class PlayerMove : MonoBehaviour
                 moveDirection.x = horizInput * movementSpeed;
                 moveDirection.z = vertInput * movementSpeed;
             }
+
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
         }
 
