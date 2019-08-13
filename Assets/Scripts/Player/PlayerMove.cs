@@ -35,9 +35,6 @@ public class PlayerMove : MonoBehaviour
     private float horizInput;
     private float jumpedVertInput;
     private float jumpedHorizInput;
-    private float lastFrameVertInput = 0;
-    private float lastFrameHorizInput = 0;
-    private float xVelocity = 0.3f;
 
     private void Awake()
     {
@@ -77,17 +74,13 @@ public class PlayerMove : MonoBehaviour
         {
             charController.Move(Vector3.down * charController.height / 2 * slopeForce * Time.deltaTime);
         }
-
-        lastFrameHorizInput = horizInput;
-        lastFrameVertInput = vertInput;
-
     }
 
     private void MoveAndJump()
     {
         if (charController.isGrounded) // On ground movement
         {
-            moveDirection = new Vector3(horizInput, 0, vertInput);
+            moveDirection = new Vector3(horizInput, 0f, vertInput);
             moveDirection.Normalize();
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
             moveDirection *= movementSpeed;
@@ -108,9 +101,9 @@ public class PlayerMove : MonoBehaviour
             // If player stops input mid-air, continue momentum
             if (Mathf.Abs(Input.GetAxis(horizontalInputName)) < 1 && Mathf.Abs(Input.GetAxis(verticalInputName)) < 1)
             {
-                moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed;
-                moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed;
-                Debug.Log(true);
+               moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed;
+               moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed;
+
             }
             // enable in air control
             else
@@ -123,6 +116,8 @@ public class PlayerMove : MonoBehaviour
 
         moveDirection.y -= gravity * Time.deltaTime;
         charController.Move(moveDirection * Time.deltaTime);
+       // Debug.Log("vert input: " + vertInput + " horiz input: " + horizInput);
+        
     }
 
     private void ProcessCrouchAndSlide()
