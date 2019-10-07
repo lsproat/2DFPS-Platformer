@@ -19,15 +19,13 @@ public class EnemyAI : MonoBehaviour
 
 
     float distanceToTarget = Mathf.Infinity;
-    bool isProvoked = false;
     private int destPoint = 0;
     private bool turnEnemy = false;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.autoBraking = false; //continuous motion between points (no slowdown)
-        navMeshAgent.updateRotation = false;
+        navMeshAgent.enabled = false;
 
         destPoint++; // assume enemy starts in destPoint[0];
         waitTime = startWaitTime;
@@ -35,7 +33,12 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        Patrol();
+        if (!playerDetected) Patrol();
+        else
+        {
+            navMeshAgent.enabled = true;
+            EngageTarget();
+        }
     }
 
     private void Patrol()
@@ -80,6 +83,8 @@ public class EnemyAI : MonoBehaviour
         if (distanceToTarget <= navMeshAgent.stoppingDistance)
         {
             //capture/attack
+            navMeshAgent.enabled = false;
+            playerDetected = false; //delete this
         }
     }
 
