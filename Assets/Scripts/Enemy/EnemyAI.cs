@@ -1,21 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-
+    NavMeshAgent navMeshAgent;
     [SerializeField] Transform playerTarget;
+
     [SerializeField] float turnSpeed = 5f;
-    [SerializeField] float waitBeforeMove = 3f;
+    [SerializeField] float turnDelay = 3;
+    [SerializeField] int speed = 5;
+    [SerializeField] float startWaitTime = 6;
     public Vector3[] points;
     public bool playerDetected = false;
+    private float waitTime;
 
-    NavMeshAgent navMeshAgent;
+
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
     private int destPoint = 0;
+    private bool turnEnemy = false;
 
     void Start()
     {
@@ -23,30 +29,44 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.autoBraking = false; //continuous motion between points (no slowdown)
         navMeshAgent.updateRotation = false;
 
-        GotoNextPoint();
+        destPoint++; // assume enemy starts in destPoint[0];
+        waitTime = startWaitTime;
     }
 
     void Update()
     {
-        // distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if (!playerDetected && !navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
-            //GotoNextPoint();
-            WaitAndRotate();
-       //else if (playerDetected) EngageTarget();
+        Patrol();
     }
 
-    void GotoNextPoint()
+    private void Patrol()
     {
-        // Returns if no points have been set up
-        if (points.Length == 0)
-            return;
+        //if counter reaches end, set 0 to loop to begining spot
+        if (destPoint == points.Length) destPoint = 0;
 
-        // Set the agent to go to the currently selected destination.
-        navMeshAgent.destination = points[destPoint];
+        transform.position = Vector3.MoveTowards(transform.position, points[destPoint], speed * Time.deltaTime);
 
-        // Choose the next point in the array as the destination,
-        // cycling to the start if necessary.
-        destPoint = (destPoint + 1) % points.Length;
+        // when enemy reaches destination
+        if (Vector3.Distance(transform.position, points[destPoint]) < 0.2f)
+        {
+            if (waitTime <= 0)
+            {
+                waitTime = startWaitTime;
+                destPoint++;
+            }
+            else if (waitTime <= turnDelay)
+            {
+                int tmpDestPoint = destPoint;
+                if (tmpDestPoint + 1 == points.Length) tmpDestPoint = 0;
+                else tmpDestPoint++;
+
+                FaceTarget(points[tmpDestPoint]);
+                waitTime -= Time.deltaTime;
+            }
+            else
+            {
+                waitTime -= Time.deltaTime;
+            }
+        }
     }
 
     private void EngageTarget()
@@ -66,16 +86,6 @@ public class EnemyAI : MonoBehaviour
     private void ChaseTarget()
     {
         navMeshAgent.SetDestination(playerTarget.position);
-    }
-
-    IEnumerator WaitAndRotate()
-    {
-        //int tmpDestPoint = (destPoint + 1) % points.Length;
-        Vector3 tmpDestination = points[destPoint];
-        FaceTarget(tmpDestination);
-        yield return new WaitForSeconds(waitBeforeMove);
-        GotoNextPoint();
-
     }
 
     private void FaceTarget(Vector3 target)

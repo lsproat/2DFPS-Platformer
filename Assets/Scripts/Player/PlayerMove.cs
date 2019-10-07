@@ -82,6 +82,9 @@ public class PlayerMove : MonoBehaviour
     {
         if (charController.isGrounded) // On ground movement
         {
+            jumpedHorizInput = 0;
+            jumpedVertInput = 0;
+
             moveDirection = Vector3.zero;
             moveDirection = new Vector3(horizInput, 0f, vertInput);
             moveDirection.Normalize();
@@ -121,8 +124,7 @@ public class PlayerMove : MonoBehaviour
 
         moveDirection.y -= gravity * Time.deltaTime;
         charController.Move(moveDirection * Time.deltaTime);
-       // Debug.Log("vert input: " + vertInput + " horiz input: " + horizInput);
-        
+
     }
 
     private void ProcessCrouchAndSlide()
