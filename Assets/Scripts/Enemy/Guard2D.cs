@@ -15,6 +15,7 @@ public class Guard2D : MonoBehaviour
 
     public VLight spotlight;
     public float viewDistance;
+    public float areaSize;
 
     Color orignalSpotlightColor;
     Transform player;
@@ -61,7 +62,7 @@ public class Guard2D : MonoBehaviour
             float angleBetweenGuardAndPlayer = Vector3.Angle(transform.forward, dirToPlayer);
             if (angleBetweenGuardAndPlayer < viewAngle / 2)
             {
-                if (!Physics.Linecast(transform.position, player.position, viewMask))
+                if (!Physics2D.Linecast(transform.position, player.position, viewMask))
                 {
                     return true; //can see player
                 }

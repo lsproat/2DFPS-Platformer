@@ -348,13 +348,13 @@ MonoBehaviour:
   lockTransforms: 0
   renderWireFrame: 1
   lightType: 0
-  lightMultiplier: 1.25
+  lightMultiplier: 1.5
   spotExponent: 1
   constantAttenuation: 1
   linearAttenuation: 10
-  quadraticAttenuation: 100
+  quadraticAttenuation: 50
   aspect: 1
-  slices: 86
+  slices: 60
   colorTint: {r: 1, g: 0.7760036, b: 0, a: 1}
   noiseSpeed: {x: 0, y: 0, z: 0}
   useDithering: 0
