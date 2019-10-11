@@ -179,7 +179,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   spotlight: {fileID: 7288990019211791044}
-  viewDistance: 10
+  viewDistance: 15
+  canvas: {fileID: 0}
 --- !u!1 &5748638621060061372
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +269,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10
+  far clip plane: 15
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -362,13 +363,13 @@ MonoBehaviour:
   useSoftBlend: 1
   useCurves: 0
   worldScrollAmount: 0
-  shadowMode: 2
+  shadowMode: 1
   shadowMapRes: 256
   shadowBlurPasses: 0
   shadowBlurSize: 0
   renderFullShadows: 0
   _renderShadowMapInUpdate: 0
-  spotRange: 10
+  spotRange: 15
   spotNear: 0.1
   spotAngle: 70
   orthoSize: 0.5

@@ -308,7 +308,6 @@ GameObject:
   - component: {fileID: 6344400939935746289}
   - component: {fileID: 6344400939935746294}
   - component: {fileID: 6344400939935746295}
-  - component: {fileID: 6344400939935746293}
   - component: {fileID: 6344400939935746059}
   - component: {fileID: 6344400939935746060}
   m_Layer: 0
@@ -379,28 +378,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6344400939935746293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6344400939935746058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1af62ff471b574b9efa52dc8ccd321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  waitTime: 1
-  turnSpeed: 50000
-  timeToSpotPlayer: 0.5
-  pathHolder: {fileID: 6344400939828468624}
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 512
-  spotlight: {fileID: 3848961923999863087}
-  viewDistance: 10
 --- !u!61 &6344400939935746059
 BoxCollider2D:
   m_ObjectHideFlags: 0

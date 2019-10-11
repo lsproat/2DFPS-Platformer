@@ -41,7 +41,6 @@ public class PlayerMove : MonoBehaviour
         inputManager = GetComponentInParent<InputManager>();
         charController = GetComponentInParent<CharacterController>();
         cam = playerParent.GetComponentInChildren<Camera>();
-
     }
 
     // Update is called once per frame

@@ -18,12 +18,15 @@ public class Guard3D : MonoBehaviour
 
     Color orignalSpotlightColor;
     Transform player;
+    public GameObject canvas;
 
     float viewAngle;
     float playerVisibleTimer;
 
     private void Start()
     {
+        Time.timeScale = 1; // bug fix for the win/lose pause screen
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         viewAngle = spotlight.spotAngle;
         orignalSpotlightColor = spotlight.colorTint;
@@ -49,7 +52,7 @@ public class Guard3D : MonoBehaviour
 
         if (playerVisibleTimer >= timeToSpotPlayer)
         {
-            // Player spotted
+            canvas.SendMessage("ShowGameLoseUI");
         }
     }
 

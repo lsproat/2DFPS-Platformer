@@ -8,6 +8,7 @@ TagManager:
   - CamSwitch
   - Reload
   - vlight
+  - Win
   layers:
   - Default
   - TransparentFX

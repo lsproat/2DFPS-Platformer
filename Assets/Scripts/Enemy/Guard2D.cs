@@ -19,6 +19,7 @@ public class Guard2D : MonoBehaviour
 
     Color orignalSpotlightColor;
     Transform player;
+    public GameObject canvas;
 
     float viewAngle;
     float playerVisibleTimer;
@@ -50,7 +51,7 @@ public class Guard2D : MonoBehaviour
 
         if (playerVisibleTimer >= timeToSpotPlayer)
         {
-            // Player spotted
+            canvas.SendMessage("ShowGameLoseUI");
         }
     }
 
