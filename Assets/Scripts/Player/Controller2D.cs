@@ -9,6 +9,7 @@ public class Controller2D : MonoBehaviour
     public CollisionInfo collisions;
 
     public LayerMask collisionMask;
+    public LayerMask enemyCollisionMask;
 
     const float skinWidth = 0.015f;
     public int horizontalRayCount = 4;
@@ -44,12 +45,21 @@ public class Controller2D : MonoBehaviour
         {
             Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpcaing * i);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-            if (hit)
+            RaycastHit2D hitObstacle = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+            if (hitObstacle)
             {
-                velocity.x = (hit.distance - skinWidth) * directionX;
-                rayLength = hit.distance;
+                velocity.x = (hitObstacle.distance - skinWidth) * directionX;
+                rayLength = hitObstacle.distance;
+
+                collisions.left = directionX == -1;
+                collisions.right = directionX == 1;
+            }
+            RaycastHit2D hitEnemy = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, enemyCollisionMask);
+            if (hitEnemy)
+            {
+                velocity.x = (hitEnemy.distance - skinWidth) * directionX;
+                rayLength = hitEnemy.distance;
 
                 collisions.left = directionX == -1;
                 collisions.right = directionX == 1;
@@ -69,10 +79,20 @@ public class Controller2D : MonoBehaviour
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
-            if (hit)
+            RaycastHit2D hitObstacle = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+            if (hitObstacle)
             {
-                velocity.y = (hit.distance - skinWidth) * directionY;
-                rayLength = hit.distance;
+                velocity.y = (hitObstacle.distance - skinWidth) * directionY;
+                rayLength = hitObstacle.distance;
+
+                collisions.below = directionY == -1;
+                collisions.above = directionY == 1;
+            }
+            RaycastHit2D hitEnemy = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, enemyCollisionMask);
+            if (hitEnemy)
+            {
+                velocity.y = (hitEnemy.distance - skinWidth) * directionY;
+                rayLength = hitEnemy.distance;
 
                 collisions.below = directionY == -1;
                 collisions.above = directionY == 1;
