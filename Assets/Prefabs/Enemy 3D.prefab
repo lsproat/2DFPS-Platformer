@@ -420,7 +420,7 @@ MonoBehaviour:
   noiseSpeed: {x: 0, y: 0, z: 0}
   useDithering: 0
   ditherAmount: 0
-  useSoftBlend: 1
+  useSoftBlend: 0
   useCurves: 0
   worldScrollAmount: 0
   shadowMode: 1

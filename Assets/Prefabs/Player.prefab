@@ -77,13 +77,13 @@ MonoBehaviour:
   playerParent: {fileID: 6765321161334785151}
   horizontalInputName: Horizontal
   verticalInputName: Vertical
-  jumpSpeed: 8
+  jumpSpeed: 10
   gravity: 20
   jumpKey: 32
   slopeForce: 5
   slopeForceRayLength: 1.5
-  walkSpeed: 8
-  sprintSpeed: 13
+  walkSpeed: 6
+  sprintSpeed: 10
   sprintBuildUpSpeed: 4
   sprintKey: 304
   crouchKey: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
   toOrthoDuration: 5
   toPerspecDuration: 4
   toOrthoEase: 4
-  toPerspecEase: 0.75
+  toPerspecEase: 1.5
   ChangeProjection: 0
 --- !u!1 &6765321161334785151
 GameObject:
@@ -488,10 +488,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   enemyCollisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   horizontalRayCount: 4
   verticalRayCount: 4
 --- !u!1 &8624683955951704684

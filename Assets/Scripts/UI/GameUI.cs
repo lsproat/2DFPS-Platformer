@@ -7,6 +7,10 @@ public class GameUI : MonoBehaviour
     public GameObject gameLoseUI;
     public GameObject gameWinUI;
 
+    public void Start()
+    {
+        Cursor.visible = false;
+    }
 
     public void ShowGameWinUI()
     {
