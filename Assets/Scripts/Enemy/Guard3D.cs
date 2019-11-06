@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Guard3D : MonoBehaviour
 {
-    public float speed = 5;
-    public float waitTime = 0.3f;
-    public float turnSpeed = 90f;
-    public float timeToSpotPlayer = 0.5f;
+    [SerializeField] float speed = 5;
+    [SerializeField] float waitTime = 0.3f;
+    [SerializeField] float turnSpeed = 90f;
+    [SerializeField] float timeToSpotPlayer = 0.5f;
 
     public Transform pathHolder;
     
     public LayerMask viewMask;
 
     public VLight spotlight;
-    public float viewDistance;
+    [SerializeField] float viewDistance;
 
     Color orignalSpotlightColor;
     Transform player;
