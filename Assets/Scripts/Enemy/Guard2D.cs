@@ -10,8 +10,8 @@ public class Guard2D : MonoBehaviour
     [SerializeField] float timeToSpotPlayer = 0.5f;
 
     public Transform pathHolder;
-
     public LayerMask viewMask;
+    private Animator animate;
 
     public VLight spotlight;
     [SerializeField] float viewDistance;
@@ -26,6 +26,7 @@ public class Guard2D : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        animate = gameObject.GetComponentInChildren<Animator>();
         viewAngle = spotlight.spotAngle;
         orignalSpotlightColor = spotlight.colorTint;
 
@@ -54,7 +55,7 @@ public class Guard2D : MonoBehaviour
         }
     }
 
-    bool CanSeePlayer()
+    private bool CanSeePlayer()
     {
         if (Vector3.Distance(transform.position, player.position) < viewDistance)
         {
@@ -83,11 +84,19 @@ public class Guard2D : MonoBehaviour
 
             while (true)
             {
+
                 transform.position = Vector3.MoveTowards(transform.position, targetWaypoint, speed * Time.deltaTime);
-                if (transform.position == targetWaypoint)
+                //animate Trigger
+                animate.SetBool("IsWalking", true);
+
+                if (transform.position == targetWaypoint) // if we reach a waypoint, handle index, wait & turn
                 {
                     targetWaypointIndex = (targetWaypointIndex + 1) % waypoints.Length;
                     targetWaypoint = waypoints[targetWaypointIndex];
+
+                    //animate Trigger
+                    animate.SetBool("IsWalking", false);
+
                     yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(TurnToFace(targetWaypoint));
                 }

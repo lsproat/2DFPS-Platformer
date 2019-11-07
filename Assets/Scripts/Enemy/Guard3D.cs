@@ -10,8 +10,8 @@ public class Guard3D : MonoBehaviour
     [SerializeField] float timeToSpotPlayer = 0.5f;
 
     public Transform pathHolder;
-    
     public LayerMask viewMask;
+    private Animator animate;
 
     public VLight spotlight;
     [SerializeField] float viewDistance;
@@ -27,6 +27,7 @@ public class Guard3D : MonoBehaviour
     {
         Time.timeScale = 1; // bug fix for the win/lose pause screen
 
+        animate = gameObject.GetComponentInChildren<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         viewAngle = spotlight.spotAngle;
         orignalSpotlightColor = spotlight.colorTint;
@@ -84,11 +85,26 @@ public class Guard3D : MonoBehaviour
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetWaypoint, speed * Time.deltaTime);
+            //animate Trigger - Walking
+            animate.SetBool("IsTurning", false);
+            animate.SetBool("IsWalking", true);
+
             if (transform.position == targetWaypoint)
             {
                 targetWaypointIndex = (targetWaypointIndex + 1) % waypoints.Length;
                 targetWaypoint = waypoints[targetWaypointIndex];
+
+                //animate Trigger - Idle
+                animate.SetBool("IsTurning", false);
+                animate.SetBool("IsWalking", false);
+
+
                 yield return new WaitForSeconds(waitTime);
+
+                //animate Trigger - Turning
+                animate.SetBool("IsTurning", true);
+                animate.SetBool("IsWalking", false);
+
                 yield return StartCoroutine(TurnToFace(targetWaypoint));
             }
             yield return null;
