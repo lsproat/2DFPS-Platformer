@@ -10,8 +10,11 @@ public class Player2D : MonoBehaviour
     float accelerationTimeAirborne = 0.2f;
     float accelerationTimeGrounded = 0.1f;
     float moveSpeed = 6f;
-    public float graceTime = 5;
+    public float graceTime = 0.2f;
     float graceTimer;
+
+    public float jumpCooldown = 0.2f;
+    bool isJumping = false;
 
     float jumpVelocity;
     float gravity;
@@ -38,7 +41,6 @@ public class Player2D : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("GraceTimer:" + graceTimer);
         if (controller.collisions.below) graceTimer = graceTime;
         else if (graceTimer <= graceTime) graceTimer -= Time.deltaTime;
 
@@ -52,14 +54,16 @@ public class Player2D : MonoBehaviour
         {
             input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below || jumps > 0 || graceTimer > 0)) // TODO: Universal input??
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping && (controller.collisions.below || jumps > 0 || graceTimer > 0 )) // TODO: Universal input??
             {
+                isJumping = true;
                 velocity.y = jumpVelocity;
                 if (graceTimer <= 0)
                 {
                     jumps--;
                     graceTimer = graceTime;
                 }
+                Invoke("JumpCoolingDown", jumpCooldown);
             }
             if (controller.collisions.below) jumps = 1;
         }
@@ -69,5 +73,10 @@ public class Player2D : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void JumpCoolingDown()
+    {
+        isJumping = false;
     }
 }
