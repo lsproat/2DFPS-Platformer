@@ -76,38 +76,41 @@ public class Guard3D : MonoBehaviour
 
     IEnumerator FollowPath(Vector3[] waypoints)
     {
-        transform.position = waypoints[0];
-
-        int targetWaypointIndex = 1;
-        Vector3 targetWaypoint = waypoints[targetWaypointIndex];
-        transform.LookAt(targetWaypoint);
-
-        while (true)
+        if (waypoints.Length > 1)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetWaypoint, speed * Time.deltaTime);
-            //animate Trigger - Walking
-            animate.SetBool("IsTurning", false);
-            animate.SetBool("IsWalking", true);
+            transform.position = waypoints[0];
 
-            if (transform.position == targetWaypoint)
+            int targetWaypointIndex = 1;
+            Vector3 targetWaypoint = waypoints[targetWaypointIndex];
+            transform.LookAt(targetWaypoint);
+
+            while (true)
             {
-                targetWaypointIndex = (targetWaypointIndex + 1) % waypoints.Length;
-                targetWaypoint = waypoints[targetWaypointIndex];
-
-                //animate Trigger - Idle
+                transform.position = Vector3.MoveTowards(transform.position, targetWaypoint, speed * Time.deltaTime);
+                //animate Trigger - Walking
                 animate.SetBool("IsTurning", false);
-                animate.SetBool("IsWalking", false);
+                animate.SetBool("IsWalking", true);
+
+                if (transform.position == targetWaypoint)
+                {
+                    targetWaypointIndex = (targetWaypointIndex + 1) % waypoints.Length;
+                    targetWaypoint = waypoints[targetWaypointIndex];
+
+                    //animate Trigger - Idle
+                    animate.SetBool("IsTurning", false);
+                    animate.SetBool("IsWalking", false);
 
 
-                yield return new WaitForSeconds(waitTime);
+                    yield return new WaitForSeconds(waitTime);
 
-                //animate Trigger - Turning
-                animate.SetBool("IsTurning", true);
-                animate.SetBool("IsWalking", false);
+                    //animate Trigger - Turning
+                    animate.SetBool("IsTurning", true);
+                    animate.SetBool("IsWalking", false);
 
-                yield return StartCoroutine(TurnToFace(targetWaypoint));
+                    yield return StartCoroutine(TurnToFace(targetWaypoint));
+                }
+                yield return null;
             }
-            yield return null;
         }
     }
 
