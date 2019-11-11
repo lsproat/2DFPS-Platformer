@@ -10,8 +10,8 @@ public class Player2D : MonoBehaviour
     float accelerationTimeAirborne = 0.2f;
     float accelerationTimeGrounded = 0.1f;
     float moveSpeed = 6f;
-    public float graceTime = 50;
-    float graceTimer = 0;
+    public float graceTime = 5;
+    float graceTimer;
 
     float jumpVelocity;
     float gravity;
@@ -32,13 +32,15 @@ public class Player2D : MonoBehaviour
     {
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+
+        graceTimer = graceTime;
     }
 
     void Update()
     {
-        Debug.Log(graceTimer);
+        Debug.Log("GraceTimer:" + graceTimer);
         if (controller.collisions.below) graceTimer = graceTime;
-        else if (graceTimer > 0) graceTimer -= 10f * Time.deltaTime; ;
+        else if (graceTimer <= graceTime) graceTimer -= Time.deltaTime;
 
 
         if (controller.collisions.above || controller.collisions.below)
@@ -53,8 +55,11 @@ public class Player2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below || jumps > 0 || graceTimer > 0)) // TODO: Universal input??
             {
                 velocity.y = jumpVelocity;
-                if (graceTimer <= 0) jumps--;
-                graceTimer = 0;
+                if (graceTimer <= 0)
+                {
+                    jumps--;
+                    graceTimer = graceTime;
+                }
             }
             if (controller.collisions.below) jumps = 1;
         }
