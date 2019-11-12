@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test 2D (Jenny).unity
+    path: Assets/Scenes/Testing Scenes/Test 2D (Jenny).unity
     guid: abfb0c083c431744b8955ef5e843d9ae
   m_configObjects: {}
