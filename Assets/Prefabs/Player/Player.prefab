@@ -295,7 +295,6 @@ GameObject:
   - component: {fileID: 1403040388232318799}
   - component: {fileID: 380777368295471554}
   - component: {fileID: 3705514662217628169}
-  - component: {fileID: 4103437471142473907}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -386,20 +385,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActive: 0
---- !u!114 &4103437471142473907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6765321161334785151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b976642c92ae349429a09251b118abe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PressToAssassinate: {fileID: 0}
-  Melee: 102
 --- !u!1 &6925705150111204396
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +459,8 @@ MonoBehaviour:
   jumpHeight: 3.5
   timeToJumpApex: 0.4
   jumps: 1
+  graceTime: 0.2
+  jumpCooldown: 0.2
 --- !u!114 &274842707357729165
 MonoBehaviour:
   m_ObjectHideFlags: 0

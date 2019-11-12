@@ -15,7 +15,7 @@ public class RestartLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Reload") SceneManager.LoadScene(0);
+        if (other.gameObject.tag == "Reload") SceneManager.LoadScene(1);
         else if (other.gameObject.tag == "Win") ui.ShowGameWinUI();
     }
 
@@ -23,6 +23,11 @@ public class RestartLevel : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(1);
+    }
+
+    public void UIButtonReturnToMenu()
+    {
         SceneManager.LoadScene(0);
     }
 }

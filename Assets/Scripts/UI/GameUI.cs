@@ -7,9 +7,12 @@ public class GameUI : MonoBehaviour
     public GameObject gameLoseUI;
     public GameObject gameWinUI;
 
+    InputManager input;
+
     public void Start()
     {
         Cursor.visible = false;
+        input = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
     }
 
     public void ShowGameWinUI()
@@ -22,6 +25,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowGameLoseUI()
     {
+        input.inputActive = false;
         Time.timeScale = .0000001f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
