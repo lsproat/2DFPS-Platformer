@@ -20,6 +20,9 @@ public class CameraSwitcher : MonoBehaviour
     bool activeFP = false;
     bool active2D = true;
 
+    // for checkpoint system
+    [HideInInspector]
+    public Vector3 checkpointPos = new Vector3(0, 0, 0);
 
     private void Awake()
     {
@@ -43,6 +46,7 @@ public class CameraSwitcher : MonoBehaviour
         {
             inputManager.inputActive = false; // stop player input
             ChangePerspective();
+            checkpointPos = gameObject.transform.position;
             Destroy(other.gameObject); //destory pickip
         }
     }

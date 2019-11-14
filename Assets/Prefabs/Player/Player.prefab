@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 1403040388232318799}
   - component: {fileID: 380777368295471554}
   - component: {fileID: 3705514662217628169}
+  - component: {fileID: 3284096302263616264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -338,6 +339,7 @@ MonoBehaviour:
   coroutineWaitTime: 3.5
   controllerFP: {fileID: 2688211677285472196}
   controller2D: {fileID: 6925705150111204396}
+  checkpointPos: {x: 0, y: 0, z: 0}
 --- !u!54 &1403040388232318799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -385,6 +387,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActive: 0
+--- !u!114 &3284096302263616264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765321161334785151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34a4594fbff48e44831e87ffdd680a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameUI: {fileID: 0}
+  enemiesToReset3D: {fileID: 0}
 --- !u!1 &6925705150111204396
 GameObject:
   m_ObjectHideFlags: 0
