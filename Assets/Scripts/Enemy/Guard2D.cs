@@ -9,6 +9,8 @@ public class Guard2D : MonoBehaviour
     [SerializeField] float turnSpeed = 90f;
     [SerializeField] float timeToSpotPlayer = 0.5f;
 
+    float addedHeadHeight = 1f;
+
     public Transform pathHolder;
     public LayerMask viewMask;
     private Animator animate;
@@ -63,7 +65,8 @@ public class Guard2D : MonoBehaviour
             float angleBetweenGuardAndPlayer = Vector3.Angle(transform.forward, dirToPlayer);
             if (angleBetweenGuardAndPlayer < viewAngle / 2)
             {
-                if (!Physics2D.Linecast(transform.position, player.position, viewMask))
+                Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y + addedHeadHeight); // makes linecast happen from head instead of center mass
+                if (!Physics2D.Linecast(enemyPos, player.position, viewMask))
                 {
                     return true; //can see player
                 }
@@ -133,7 +136,8 @@ public class Guard2D : MonoBehaviour
         }
         Gizmos.DrawLine(previousPosition, startPosition);
 
+        Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y + addedHeadHeight); // makes linecast happen from head instead of center mass
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
+        Gizmos.DrawRay(enemyPos, transform.forward * viewDistance);
     }
 }

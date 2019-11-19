@@ -377,7 +377,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   spotlight: {fileID: 3848961923999863087}
-  viewDistance: 10
+  viewDistance: 10.25
   canvas: {fileID: 0}
 --- !u!1 &6733661006819068532
 GameObject:

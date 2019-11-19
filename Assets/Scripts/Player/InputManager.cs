@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    [HideInInspector]
     public bool inputActive;
 
     private void Awake()
