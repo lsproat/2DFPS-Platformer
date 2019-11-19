@@ -26,6 +26,7 @@ public class GameUI : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gameWinUI.SetActive(true);
+        input.inputActive = false;
     }
 
     public void ShowGameLoseUI()
