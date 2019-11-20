@@ -18,6 +18,11 @@ public class GameUI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         input = player.GetComponent<InputManager>();
         checkpoint = player.GetComponent<Checkpoints>();
+
+
+        //performance
+        QualitySettings.vSyncCount = 0;
+        //Application.targetFrameRate = 30;
     }
 
     public void ShowGameWinUI()

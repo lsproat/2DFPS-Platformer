@@ -410,22 +410,22 @@ MonoBehaviour:
   lockTransforms: 0
   renderWireFrame: 1
   lightType: 0
-  lightMultiplier: 1.5
-  spotExponent: 1
+  lightMultiplier: 2.5
+  spotExponent: -1
   constantAttenuation: 1
   linearAttenuation: 10
   quadraticAttenuation: 50
   aspect: 1
-  slices: 60
+  slices: 35
   colorTint: {r: 1, g: 0.7760036, b: 0, a: 1}
   noiseSpeed: {x: 0, y: 0, z: 0}
-  useDithering: 0
-  ditherAmount: 0
+  useDithering: 1
+  ditherAmount: -20
   useSoftBlend: 0
   useCurves: 0
   worldScrollAmount: 0
   shadowMode: 1
-  shadowMapRes: 256
+  shadowMapRes: 128
   shadowBlurPasses: 0
   shadowBlurSize: 0
   renderFullShadows: 0
