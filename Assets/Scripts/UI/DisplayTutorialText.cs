@@ -6,12 +6,21 @@ public class DisplayTutorialText : MonoBehaviour
 {
 
     [SerializeField] GameObject tutorialText;
+    Animator animate;
+
+    private void Start()
+    {
+        animate = tutorialText.GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             tutorialText.SetActive(true);
+
+            //animation
+            animate.SetBool("MoveIn", true);
         }
     }
 
@@ -19,7 +28,9 @@ public class DisplayTutorialText : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            tutorialText.SetActive(false);
+            //animation
+            animate.SetBool("MoveIn", false);
+            animate.SetBool("MoveOut", true);
         }
     }
 
@@ -28,6 +39,9 @@ public class DisplayTutorialText : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             tutorialText.SetActive(true);
+
+            //animation
+            animate.SetBool("MoveIn", true);
         }
     }
 
@@ -35,10 +49,9 @@ public class DisplayTutorialText : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            tutorialText.SetActive(false);
+            //animation
+            animate.SetBool("MoveIn", false);
+            animate.SetBool("MoveOut", true);
         }
     }
-
-
-
 }

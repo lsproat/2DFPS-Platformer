@@ -296,6 +296,8 @@ GameObject:
   - component: {fileID: 380777368295471554}
   - component: {fileID: 3705514662217628169}
   - component: {fileID: 3284096302263616264}
+  - component: {fileID: 6932537042927859928}
+  - component: {fileID: 5195425983853555522}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -400,6 +402,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
+--- !u!114 &6932537042927859928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765321161334785151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3916da89fdd43498f4ef786320e1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+--- !u!114 &5195425983853555522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765321161334785151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b976642c92ae349429a09251b118abe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PressToAssassinate: {fileID: 0}
+  Melee: 0
 --- !u!1 &6925705150111204396
 GameObject:
   m_ObjectHideFlags: 0

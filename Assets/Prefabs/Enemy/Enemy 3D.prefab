@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9083006950392664608}
   - component: {fileID: 2463524600070550096}
-  - component: {fileID: 7105785942526684364}
   m_Layer: 11
   m_Name: Assassination Collider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,20 +44,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: -0.67}
---- !u!114 &7105785942526684364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4495100258878953596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b976642c92ae349429a09251b118abe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PressToAssassinate: {fileID: 0}
-  Melee: 102
 --- !u!1 &5382868628742251041
 GameObject:
   m_ObjectHideFlags: 0

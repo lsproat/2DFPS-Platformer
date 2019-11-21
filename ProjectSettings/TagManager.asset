@@ -9,6 +9,7 @@ TagManager:
   - Reload
   - vlight
   - Win
+  - Enemy
   layers:
   - Default
   - TransparentFX
