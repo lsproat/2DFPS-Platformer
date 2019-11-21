@@ -370,7 +370,7 @@ MonoBehaviour:
   speed: 5
   waitTime: 1
   turnSpeed: 50000
-  timeToSpotPlayer: 0.5
+  timeToSpotPlayer: 0.3
   pathHolder: {fileID: 6344400939828468624}
   viewMask:
     serializedVersion: 2

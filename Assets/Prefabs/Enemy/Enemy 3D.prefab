@@ -219,7 +219,7 @@ MonoBehaviour:
   speed: 5
   waitTime: 0.3
   turnSpeed: 90
-  timeToSpotPlayer: 0.5
+  timeToSpotPlayer: 0.3
   pathHolder: {fileID: 5748638620518975352}
   viewMask:
     serializedVersion: 2
@@ -316,7 +316,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 15
-  field of view: 60
+  field of view: 0.00001
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -327,8 +327,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1

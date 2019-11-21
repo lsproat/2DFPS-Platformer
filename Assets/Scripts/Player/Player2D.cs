@@ -7,7 +7,7 @@ public class Player2D : MonoBehaviour
 {
     public float jumpHeight = 3.5f;
     public float timeToJumpApex = 0.4f;
-    public float jumps = 1;
+    public int jumps = 1;
     float accelerationTimeAirborne = 0.2f;
     float accelerationTimeGrounded = 0.1f;
     float moveSpeed = 6f;
@@ -15,8 +15,10 @@ public class Player2D : MonoBehaviour
     float graceTimer;
 
     public float jumpCooldown = 0.2f;
-    bool isJumping = false;
+    bool jumpCoolDownCheck = false;
 
+    bool moving = false;
+    bool jumpActivated = false;
     float jumpVelocity;
     float gravity;
     Vector3 velocity;
@@ -59,16 +61,20 @@ public class Player2D : MonoBehaviour
             velocity.y = 0;
         }
 
+        bool grounded = controller.collisions.below;
+
         if (inputManager.inputActive)
         {
             input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            if (Input.GetKeyDown(KeyCode.Space) && !isJumping && (controller.collisions.below || jumps > 0 || graceTimer > 0 )) // TODO: Universal input??
+            if (Input.GetKeyDown(KeyCode.Space) && !jumpCoolDownCheck && (grounded || jumps > 0 || graceTimer > 0 )) // TODO: Universal input??
             {
-                isJumping = true;
+                jumpCoolDownCheck = true;
+                jumpActivated = true;
                 velocity.y = jumpVelocity;
                 //sound for jump
                 jumpSound.Play();
+
                 if (graceTimer <= 0)
                 {
                     jumps--;
@@ -80,39 +86,49 @@ public class Player2D : MonoBehaviour
         }
         else input = new Vector2(0.0f, 0.0f);
 
-        ProcessAnimations(input);
+        ProcessMovingAnimations(input, grounded);
 
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        jumpActivated = false;
     }
 
-    private void ProcessAnimations(Vector2 input)
+    private void ProcessMovingAnimations(Vector2 input, bool grounded)
     {
-        if (input.x < 0 || input.x > 0)
-        {
-            //moving
-            animate.SetBool("Moving", true);
-            // to the left
-            if (input.x < 0) playerModel.transform.rotation = Quaternion.Euler(0, 270, 0);
-            // to the right 
-            else if (input.x > 0) playerModel.transform.rotation = Quaternion.Euler(0, 90,0);
-        }
-        else
-        {
-            //idle
-            animate.SetBool("Moving", false);
-        }
+        if (input.x < 0 || input.x > 0) moving = true;
+        else moving = false;
 
-        if (isJumping)
+        if (jumps > 0) animate.SetBool("DoubleJumpUsed", false);
+
+        // to the left
+        if (input.x < 0) playerModel.transform.rotation = Quaternion.Euler(0, 270, 0);
+        // to the right 
+        else if (input.x > 0) playerModel.transform.rotation = Quaternion.Euler(0, 90, 0);
+
+        if (!grounded && jumpActivated)
         {
-            // jumped
+            animate.SetBool("DoubleJump", true); //double jump
+            if (jumps == 0) animate.SetBool("DoubleJumpUsed", true);
         }
-     }
+        if (!moving) animate.SetBool("Moving", false); //idle
+
+        if (!grounded && !jumpActivated) animate.SetBool("inAir", true); //fell down
+        if (grounded && jumpActivated) animate.SetBool("Jump", true); //first jump
+        else if (grounded)
+        {
+            if (moving) animate.SetBool("Moving", true);
+
+            animate.SetBool("inAir", false);
+            animate.SetBool("DoubleJump", false);
+            animate.SetBool("Jump", false);
+        }
+    }
 
     private void JumpCoolingDown()
     {
-        isJumping = false;
+        jumpCoolDownCheck = false;
     }
 }
