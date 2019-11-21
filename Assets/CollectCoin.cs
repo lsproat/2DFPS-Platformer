@@ -14,13 +14,19 @@ public class CollectCoin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        scoreScript.scoreVal++;
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            scoreScript.scoreVal++;
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        scoreScript.scoreVal++;
-        Destroy(gameObject);
+        if (other.gameObject.tag == "Player")
+        {
+            scoreScript.scoreVal++;
+            Destroy(gameObject);
+        }
     }
 }

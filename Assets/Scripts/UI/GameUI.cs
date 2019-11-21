@@ -45,7 +45,6 @@ public class GameUI : MonoBehaviour
 
     public void UIButtonRetry()
     {
-        Debug.Log("fuck me bitch ass hoe");
         //Time.timeScale = 1f;
         gameLoseUI.SetActive(false);
         input.inputActive = true;

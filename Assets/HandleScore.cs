@@ -11,7 +11,9 @@ public class HandleScore : MonoBehaviour
 
     private void Start()
     {
+        
         score = scoreGUI.GetComponent<Text>();
+        score.text = "0";
     }
 
     private void Update()
