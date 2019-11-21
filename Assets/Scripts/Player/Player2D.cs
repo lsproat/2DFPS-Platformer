@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,10 +26,18 @@ public class Player2D : MonoBehaviour
     Controller2D controller;
     InputManager inputManager;
 
+    [SerializeField] GameObject playerModel;
+    Animator animate;
+
+    [SerializeField] GameObject playerJumpSoundGO;
+    AudioSource jumpSound;
+
     void Awake()
     {
         inputManager = GetComponentInParent<InputManager>();
+        jumpSound = playerJumpSoundGO.GetComponent<AudioSource>();
         controller = GetComponent<Controller2D>();
+        animate = playerModel.GetComponent<Animator>();
     }
 
     void Start()
@@ -58,6 +67,8 @@ public class Player2D : MonoBehaviour
             {
                 isJumping = true;
                 velocity.y = jumpVelocity;
+                //sound for jump
+                jumpSound.Play();
                 if (graceTimer <= 0)
                 {
                     jumps--;
@@ -69,11 +80,36 @@ public class Player2D : MonoBehaviour
         }
         else input = new Vector2(0.0f, 0.0f);
 
+        ProcessAnimations(input);
+
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    private void ProcessAnimations(Vector2 input)
+    {
+        if (input.x < 0 || input.x > 0)
+        {
+            //moving
+            animate.SetBool("Moving", true);
+            // to the left
+            if (input.x < 0) playerModel.transform.rotation = Quaternion.Euler(0, 270, 0);
+            // to the right 
+            else if (input.x > 0) playerModel.transform.rotation = Quaternion.Euler(0, 90,0);
+        }
+        else
+        {
+            //idle
+            animate.SetBool("Moving", false);
+        }
+
+        if (isJumping)
+        {
+            // jumped
+        }
+     }
 
     private void JumpCoolingDown()
     {

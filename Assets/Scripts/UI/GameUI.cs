@@ -12,12 +12,18 @@ public class GameUI : MonoBehaviour
     InputManager input;
     Checkpoints checkpoint;
 
+    [SerializeField] GameObject gameOverSoundGO;
+    AudioSource gameOverSound;
+
+    private bool loseUIShowing = false;
+
     public void Start()
     {
         Cursor.visible = false;
         player = GameObject.FindGameObjectWithTag("Player");
         input = player.GetComponent<InputManager>();
         checkpoint = player.GetComponent<Checkpoints>();
+        gameOverSound = gameOverSoundGO.GetComponent<AudioSource>();
 
 
         //performance
@@ -36,11 +42,18 @@ public class GameUI : MonoBehaviour
 
     public void ShowGameLoseUI()
     {
-        input.inputActive = false;
-        //Time.timeScale = .0000001f;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        gameLoseUI.SetActive(true);
+        if (!loseUIShowing)
+        {
+            loseUIShowing = true;
+            //sound
+            gameOverSound.Play();
+
+            input.inputActive = false;
+            //Time.timeScale = .0000001f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            gameLoseUI.SetActive(true);
+        }
     }
 
     public void UIButtonRetry()
@@ -52,6 +65,7 @@ public class GameUI : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         checkpoint.RestartFromCheckpoint();
+        loseUIShowing = false;
     }
 
     public void UIButtonReturnToMenu()

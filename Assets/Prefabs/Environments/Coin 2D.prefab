@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  coinSound: {fileID: 8300000, guid: bc14116d2392fd745925d7eaa7f89ec5, type: 3}
 --- !u!58 &8559625105558578020
 CircleCollider2D:
   m_ObjectHideFlags: 0

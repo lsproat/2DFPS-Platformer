@@ -24,6 +24,7 @@ public class Guard2D : MonoBehaviour
 
     float viewAngle;
     float playerVisibleTimer;
+    bool showingLoseUI = false;
 
     private void Start()
     {
