@@ -11037,6 +11037,11 @@ PrefabInstance:
       propertyPath: turnSpeed
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 5748638620894827549, guid: fbe558b1df47ea64c938709666b704fb,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1604645347}
     - target: {fileID: 7371758449879011783, guid: fbe558b1df47ea64c938709666b704fb,
         type: 3}
       propertyPath: m_IsActive
@@ -14906,6 +14911,11 @@ PrefabInstance:
       propertyPath: turnSpeed
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 5748638620894827549, guid: fbe558b1df47ea64c938709666b704fb,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1604645347}
     - target: {fileID: 7371758449879011783, guid: fbe558b1df47ea64c938709666b704fb,
         type: 3}
       propertyPath: m_IsActive
@@ -15961,6 +15971,11 @@ PrefabInstance:
       propertyPath: turnSpeed
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 5748638620894827549, guid: fbe558b1df47ea64c938709666b704fb,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1604645347}
     - target: {fileID: 7371758449879011783, guid: fbe558b1df47ea64c938709666b704fb,
         type: 3}
       propertyPath: m_IsActive
@@ -18834,6 +18849,11 @@ PrefabInstance:
       propertyPath: turnSpeed
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 5748638620894827549, guid: fbe558b1df47ea64c938709666b704fb,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1604645347}
     - target: {fileID: 7371758449879011783, guid: fbe558b1df47ea64c938709666b704fb,
         type: 3}
       propertyPath: m_IsActive

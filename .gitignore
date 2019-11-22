@@ -46,6 +46,14 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# Lightmaps
+*.exr
+*.exr.meta
+LightmapSnapshot.asset
+LightmapSnapshot.asset.meta
+LightingData.asset
+LightingData.asset.meta
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
