@@ -7,7 +7,9 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] private Transform playerBody;
     [SerializeField] private string mouseXInputName, mouseYInputName;
+    public GameObject globalController;
 
+    private GlobalControl globalControl;
     private InputManager inputManager;
 
     private float xAxisClamp;
@@ -16,9 +18,12 @@ public class PlayerLook : MonoBehaviour
 
     private void Awake()
     {
+        globalControl = globalController.GetComponent<GlobalControl>();
         inputManager = GetComponentInParent<InputManager>();
         LockCursor(); // TODO: Affects 2D?
         xAxisClamp = 0;
+
+        mouseSensitivity = globalControl.sensitivity;
     }
 
     private void LockCursor()
@@ -29,6 +34,8 @@ public class PlayerLook : MonoBehaviour
     private void Update()
     {
         if(inputManager.inputActive) CameraRoation();
+        mouseSensitivity = globalControl.sensitivity;
+
     }
 
     private void CameraRoation()
