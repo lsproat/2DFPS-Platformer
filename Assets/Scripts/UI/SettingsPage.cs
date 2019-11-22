@@ -21,6 +21,7 @@ public class SettingsPage : MonoBehaviour
 
     void Awake()
     {
+
         volume = volumeSlider.GetComponent<Slider>();
         sensitivity = sensSlider.GetComponent<Slider>();
         volumeVisualNum = volumeSlider.GetComponentInChildren<Text>();

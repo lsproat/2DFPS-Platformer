@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenuUI;
     [SerializeField] GameObject settingsMenuUI;
 
+    AudioSource buttonSound;
+
     private bool isPaused = false;
 
     InputManager input;
@@ -16,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         input = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
+        buttonSound = GetComponentInParent<AudioSource>();
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
     }
@@ -44,6 +47,8 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         settingsMenuUI.SetActive(false);
+
+        buttonSound.Play();
     }
 
     public void ResumeGameButton()
@@ -55,21 +60,28 @@ public class PauseMenu : MonoBehaviour
 
         if (pauseMenuUI.activeSelf) pauseMenuUI.SetActive(false);
         else settingsMenuUI.SetActive(false);
+
+        buttonSound.Play();
     }
 
     public void SettingsButton()
     {
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(true);
+
+        buttonSound.Play();
     }
 
     public void MainMenuButton()
     {
+        buttonSound.Play();
+
         SceneManager.LoadScene(0);
     }
 
     public void ReloadCurrentLevel()
     {
+        buttonSound.Play();
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
     }

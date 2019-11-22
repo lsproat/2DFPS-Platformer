@@ -11,6 +11,7 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] GameObject controllerFP;
     [SerializeField] GameObject controller2D;
 
+    SwitchAnimators animationSwitcher;
     InputManager inputManager;
     PerspectiveSwitcher lerpCamView;
     ZoomInLerp lerpIN;
@@ -31,6 +32,7 @@ public class CameraSwitcher : MonoBehaviour
         lerpCamView = gameObject.GetComponentInChildren<PerspectiveSwitcher>();
         lerpIN = cameraMain.GetComponent<ZoomInLerp>();
         lerpOUT = cameraMain.GetComponent<ZoomOutLerp>();
+        animationSwitcher = GetComponentInChildren<SwitchAnimators>();
 
         // initally set FP controls to OFF
         controllerFP.SetActive(false);
@@ -72,7 +74,7 @@ public class CameraSwitcher : MonoBehaviour
         lerpIN.enabled = false;
         inputManager.inputActive = true;
         ToggleControlFP();                                  // enable FP controls
-
+        animationSwitcher.controllerSwap(controllerFP, controller2D); // swaps animation controllers
     }
 
     IEnumerator LerpingOUT()
@@ -85,6 +87,7 @@ public class CameraSwitcher : MonoBehaviour
         lerpOUT.enabled = false;
         inputManager.inputActive = true;
         ToggleControl2D();
+        animationSwitcher.controllerSwap(controllerFP, controller2D); // swaps animation controllers
 
     }
 

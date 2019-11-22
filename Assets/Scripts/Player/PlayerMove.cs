@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] GameObject playerParent;
+    [SerializeField] GameObject playerModel;
 
     [SerializeField] private string horizontalInputName;
     [SerializeField] private string verticalInputName;
@@ -24,12 +26,14 @@ public class PlayerMove : MonoBehaviour
 
     Vector3 moveDirection;
 
+    private Animator animate;
     private InputManager inputManager;
     private CharacterController charController;
     private Camera cam;
     private Vector3 camOrginalPosition;
     private float movementSpeed;
     private bool isJumping;
+    private bool isSprinting;
 
     private float vertInput;
     private float horizInput;
@@ -41,6 +45,7 @@ public class PlayerMove : MonoBehaviour
         inputManager = GetComponentInParent<InputManager>();
         charController = GetComponentInParent<CharacterController>();
         cam = playerParent.GetComponentInChildren<Camera>();
+        animate = playerModel.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -95,11 +100,6 @@ public class PlayerMove : MonoBehaviour
                 jumpedHorizInput = horizInput;
                 jumpedVertInput = vertInput;
             }
-            else if (Input.GetKeyDown(crouchKey) && movementSpeed > 0f) //&& vertInput > 0f)
-            {
-                camOrginalPosition = cam.transform.localPosition;
-                // ProcessCrouchAndSlide(); NEEDS WORK
-            }
         }
         else if (!charController.isGrounded) // In air movement
         {
@@ -121,27 +121,37 @@ public class PlayerMove : MonoBehaviour
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
         }
 
+        HandleAnimations(moveDirection);
+
         moveDirection.y -= gravity * Time.deltaTime;
         charController.Move(moveDirection * Time.deltaTime);
 
     }
 
-    private void ProcessCrouchAndSlide()
+    private void HandleAnimations(Vector3 moveDirection)
     {
-        if (Input.GetKeyUp(crouchKey)) cam.transform.localPosition = camOrginalPosition;
-        else if (movementSpeed <= walkSpeed)
+        Debug.Log("Vertical input: " + vertInput);
+        Debug.Log("horizontal input: " + horizInput);
+
+        if (horizInput == 0 && vertInput == 0) //idle
         {
-            // crouch
-            cam.transform.localPosition = new Vector3(0f, 0.45f, 0f);
+            animate.SetBool("walkingForward", false);
+            animate.SetBool("walkingBackwards", false);
         }
-        else if (movementSpeed >= sprintSpeed)
+        if (horizInput > 0) animate.SetBool("walkingForward", true); // moving forward
+        if (horizInput < 0) animate.SetBool("walkingBackwards", true); // moving backwards
+        if ((horizInput > 0 || horizInput < 0) && isSprinting) animate.SetBool("sprinting", true); //sprinting
+        if (horizInput > 0 && !isSprinting) // sprint to walk forward change
         {
-            // slide
-            moveDirection.z = 0f;
-            cam.transform.localPosition = new Vector3(0f, 0.45f, 0f);
-            moveDirection.x = Mathf.SmoothDamp(moveDirection.x, 0f, ref movementSpeed, .1f);
+            animate.SetBool("sprinting", false);
+            animate.SetBool("walkingForwad", true);
         }
-        
+        if (horizInput < 0 && !isSprinting) // sprint to walk backward change
+        {
+            animate.SetBool("sprinting", false);
+            animate.SetBool("walkingBackwards", true);
+        } 
+
     }
 
     private void SetMovementSpeed()
@@ -149,8 +159,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(sprintKey))
         {
             movementSpeed = Mathf.Lerp(movementSpeed, sprintSpeed, Time.deltaTime * sprintBuildUpSpeed);
+            isSprinting = true;
         }
-        else movementSpeed = Mathf.Lerp(movementSpeed, walkSpeed, Time.deltaTime * sprintBuildUpSpeed);
+        else
+        {
+            movementSpeed = Mathf.Lerp(movementSpeed, walkSpeed, Time.deltaTime * sprintBuildUpSpeed);
+            isSprinting = false;
+        }
+
     }
 
     private bool OnSlope()
