@@ -8,6 +8,9 @@ public class AssassinateController : MonoBehaviour
     private HandleScore scoreScript;
     private GameObject enemy;
 
+    public GameObject model3D;
+
+    Animator animate;
     private bool hasCollided = false;
     public KeyCode Melee;
     public int assassiniateScore = 10;
@@ -15,6 +18,7 @@ public class AssassinateController : MonoBehaviour
     private void Start()
     {
         scoreScript = gameObject.GetComponent<HandleScore>();
+        animate = model3D.GetComponent<Animator>();
     }
 
 
@@ -36,16 +40,20 @@ public class AssassinateController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(Melee))
+        {
+            animate.SetTrigger("attack");
+        }
+    }
+
+    public void AssassinateTarget()
+    {
         if (hasCollided)
         {
-            if (Input.GetKeyDown(Melee))
-            {
-                //Destroy(gameObject.transform.parent.parent.gameObject);
-                scoreScript.scoreVal += assassiniateScore;
-                Destroy(enemy);
-                PressToAssassinate.SetActive(false);
-                hasCollided = false;
-            }
+            scoreScript.scoreVal += assassiniateScore;
+            Destroy(enemy);
+            PressToAssassinate.SetActive(false);
+            hasCollided = false;
         }
     }
 }

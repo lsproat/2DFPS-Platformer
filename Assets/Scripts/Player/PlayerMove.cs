@@ -34,6 +34,7 @@ public class PlayerMove : MonoBehaviour
     private float movementSpeed;
     private bool isJumping;
     private bool isSprinting;
+    private bool jumped = false;
 
     private float vertInput;
     private float horizInput;
@@ -52,6 +53,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        jumped = false;
     }
 
     private void PlayerMovement()
@@ -99,6 +101,7 @@ public class PlayerMove : MonoBehaviour
                 moveDirection.y = jumpSpeed;
                 jumpedHorizInput = horizInput;
                 jumpedVertInput = vertInput;
+                jumped = true;
             }
         }
         else if (!charController.isGrounded) // In air movement
@@ -141,16 +144,10 @@ public class PlayerMove : MonoBehaviour
         if (horizInput > 0) animate.SetBool("walkingForward", true); // moving forward
         if (horizInput < 0) animate.SetBool("walkingBackwards", true); // moving backwards
         if ((horizInput > 0 || horizInput < 0) && isSprinting) animate.SetBool("sprinting", true); //sprinting
-        if (horizInput > 0 && !isSprinting) // sprint to walk forward change
-        {
-            animate.SetBool("sprinting", false);
-            animate.SetBool("walkingForwad", true);
-        }
-        if (horizInput < 0 && !isSprinting) // sprint to walk backward change
-        {
-            animate.SetBool("sprinting", false);
-            animate.SetBool("walkingBackwards", true);
-        } 
+        if (!isSprinting) animate.SetBool("sprinting", false);
+        if (jumped) animate.SetBool("Jump", true);
+
+        else if (charController.isGrounded) animate.SetBool("Jump", false);
 
     }
 
