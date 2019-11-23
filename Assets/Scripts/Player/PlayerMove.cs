@@ -133,8 +133,6 @@ public class PlayerMove : MonoBehaviour
 
     private void HandleAnimations(Vector3 moveDirection)
     {
-        Debug.Log("Vertical input: " + vertInput);
-        Debug.Log("horizontal input: " + horizInput);
 
         if (horizInput == 0 && vertInput == 0) //idle
         {

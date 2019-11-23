@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6421896601939410847}
   - component: {fileID: 3306079027309137568}
   m_Layer: 0
-  m_Name: Area Light
+  m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -22128,7 +22128,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 1
   m_Events:
-  - time: 1.0833334
+  - time: 1.6666666
     functionName: OnMeleePress
     data: 
     objectReferenceParameter: {fileID: 0}

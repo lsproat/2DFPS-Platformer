@@ -14,13 +14,13 @@ public class AssassinateController : MonoBehaviour
     private bool hasCollided = false;
     public KeyCode Melee;
     public int assassiniateScore = 10;
+    public bool assassinateAnimationDone = true;
 
     private void Start()
     {
         scoreScript = gameObject.GetComponent<HandleScore>();
         animate = model3D.GetComponent<Animator>();
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,9 +40,10 @@ public class AssassinateController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(Melee))
+        if (Input.GetKeyDown(Melee) && assassinateAnimationDone && model3D.activeSelf)
         {
             animate.SetTrigger("attack");
+            assassinateAnimationDone = false;
         }
     }
 

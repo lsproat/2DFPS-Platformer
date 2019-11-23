@@ -110,8 +110,12 @@ public class Player2D : MonoBehaviour
 
         if (!grounded && jumpActivated)
         {
-            animate.SetBool("DoubleJump", true); //double jump
-            if (jumps == 0) animate.SetBool("DoubleJumpUsed", true);
+            if (jumps == 1) animate.SetBool("Jump", true); //grace timer jump used
+            else
+            {
+                animate.SetBool("DoubleJump", true); //double jump
+                if (jumps == 0) animate.SetBool("DoubleJumpUsed", true);
+            }
         }
         if (!moving) animate.SetBool("Moving", false); //idle
 

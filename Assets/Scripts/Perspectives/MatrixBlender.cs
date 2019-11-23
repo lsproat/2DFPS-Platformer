@@ -19,6 +19,7 @@ public class MatrixBlender : MonoBehaviour
 
     private IEnumerator LerpFromTo(Matrix4x4 src, Matrix4x4 dest, float duration, float ease, bool reverse)
     {
+        Debug.Log("wtf");
         float startTime = Time.time;
         while (Time.time - startTime < duration)
         {
@@ -29,6 +30,11 @@ public class MatrixBlender : MonoBehaviour
             yield return 1;
         }
         m_camera.projectionMatrix = dest;
+        if (!reverse)
+        {
+           Camera.main.orthographic = false;
+           Camera.main.fieldOfView = 90f;
+        }
     }
 
     public Coroutine BlendToMatrix(Matrix4x4 targetMatrix, float duration, float ease, bool reverse)
