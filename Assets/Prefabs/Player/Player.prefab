@@ -1983,6 +1983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerParent: {fileID: 6765321161334785151}
   playerModel: {fileID: 4648920180730063969}
+  jumpSoundGO: {fileID: 4803186305971960247}
   horizontalInputName: Horizontal
   verticalInputName: Vertical
   jumpSpeed: 10
@@ -3912,7 +3913,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 5a9f3be1ae8d3af48ae52f3b199bdfea, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.07
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4831,6 +4832,7 @@ MonoBehaviour:
   PressToAssassinate: {fileID: 0}
   meleeSoundGO: {fileID: 1662863160}
   deathSoundGO: {fileID: 1072730303}
+  ForceFieldCrystal: {fileID: 0}
   model3D: {fileID: 4648920180730063969}
   Melee: 102
   assassiniateScore: 10

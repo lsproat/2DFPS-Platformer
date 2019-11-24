@@ -11,6 +11,8 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] GameObject controllerFP;
     [SerializeField] GameObject controller2D;
 
+    public GameObject powerupSoundGO;
+    AudioSource powerupSound;
     SwitchPlayerModels modelSwitcher;
     InputManager inputManager;
     PerspectiveSwitcher lerpCamView;
@@ -33,6 +35,7 @@ public class CameraSwitcher : MonoBehaviour
         lerpIN = cameraMain.GetComponent<ZoomInLerp>();
         lerpOUT = cameraMain.GetComponent<ZoomOutLerp>();
         modelSwitcher = GetComponentInParent<SwitchPlayerModels>();
+        powerupSound = powerupSoundGO.GetComponent<AudioSource>();
 
         // initally set FP controls to OFF
         controllerFP.SetActive(false);
@@ -46,6 +49,8 @@ public class CameraSwitcher : MonoBehaviour
     {
         if (other.gameObject.tag == "CamSwitch")
         {
+            powerupSound.Play();//play sound
+
             inputManager.inputActive = false; // stop player input
             ChangePerspective();
             checkpointPos = gameObject.transform.position;

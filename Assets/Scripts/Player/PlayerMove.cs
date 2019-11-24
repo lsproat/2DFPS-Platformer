@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] GameObject playerParent;
     [SerializeField] GameObject playerModel;
+    public GameObject jumpSoundGO;
 
     [SerializeField] private string horizontalInputName;
     [SerializeField] private string verticalInputName;
@@ -26,6 +27,7 @@ public class PlayerMove : MonoBehaviour
 
     Vector3 moveDirection;
 
+    private AudioSource jumpSound;
     private Animator animate;
     private InputManager inputManager;
     private CharacterController charController;
@@ -47,6 +49,7 @@ public class PlayerMove : MonoBehaviour
         charController = GetComponentInParent<CharacterController>();
         cam = playerParent.GetComponentInChildren<Camera>();
         animate = playerModel.GetComponent<Animator>();
+        jumpSound = jumpSoundGO.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -146,6 +149,7 @@ public class PlayerMove : MonoBehaviour
         if (jumped)
         {
             //play sound HERE
+            jumpSound.Play();
             animate.SetBool("Jump", true);
         }
 
