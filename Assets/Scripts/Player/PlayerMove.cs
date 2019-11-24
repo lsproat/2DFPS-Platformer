@@ -140,7 +140,7 @@ public class PlayerMove : MonoBehaviour
             animate.SetBool("walkingBackwards", false);
         }
         if (horizInput > 0) animate.SetBool("walkingForward", true); // moving forward
-        if (horizInput < 0) animate.SetBool("walkingBackwards", true); // moving backwards
+        if (horizInput < 0 || (vertInput > 0 || vertInput < 0)) animate.SetBool("walkingBackwards", true); // moving backwards
         if ((horizInput > 0 || horizInput < 0) && isSprinting) animate.SetBool("sprinting", true); //sprinting
         if (!isSprinting) animate.SetBool("sprinting", false);
         if (jumped) animate.SetBool("Jump", true);

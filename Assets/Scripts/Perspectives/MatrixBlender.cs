@@ -19,7 +19,6 @@ public class MatrixBlender : MonoBehaviour
 
     private IEnumerator LerpFromTo(Matrix4x4 src, Matrix4x4 dest, float duration, float ease, bool reverse)
     {
-        Debug.Log("wtf");
         float startTime = Time.time;
         while (Time.time - startTime < duration)
         {

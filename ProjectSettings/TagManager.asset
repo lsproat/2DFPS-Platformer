@@ -10,6 +10,8 @@ TagManager:
   - vlight
   - Win
   - Enemy
+  - Global
+  - MagicCrystal
   layers:
   - Default
   - TransparentFX

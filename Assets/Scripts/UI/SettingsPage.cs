@@ -8,7 +8,6 @@ public class SettingsPage : MonoBehaviour
 {
     public AudioMixer mixer;
     public GameObject volumeSlider;
-    public GameObject GlobalController;
     public GameObject sensSlider;
 
     private GlobalControl globalController;
@@ -25,8 +24,9 @@ public class SettingsPage : MonoBehaviour
         volume = volumeSlider.GetComponent<Slider>();
         sensitivity = sensSlider.GetComponent<Slider>();
         volumeVisualNum = volumeSlider.GetComponentInChildren<Text>();
-        globalController = GlobalController.GetComponent<GlobalControl>();
         sensitivityText = sensSlider.GetComponentInChildren<Text>();
+
+        globalController = GameObject.FindGameObjectWithTag("Global").GetComponent<GlobalControl>();
 
         if (PlayerPrefs.HasKey("volume"))
         {
@@ -55,12 +55,14 @@ public class SettingsPage : MonoBehaviour
             //set slider val
             sensitivity.value = wantedSens;
             SetSensitivity(wantedSens);
+            Debug.Log("wanted sens: "+ 0);
         }
         else
         {
             //set volume on start
             sensitivity.value = initSens;
             SetSensitivity(initVolume);
+            Debug.Log("playerprefs NOT called");
         }
 
         //DISABLE SCREEN 

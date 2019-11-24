@@ -526,7 +526,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 6636bc46c18f77448b61279299f25ff0, type: 2}
   volumeSlider: {fileID: 2806252687748935825}
-  GlobalController: {fileID: 0}
   sensSlider: {fileID: 3055035351734622242}
   initVolume: 0.5
   initSens: 2.5
@@ -1400,7 +1399,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: backButton
+        m_MethodName: BackToPauseScreenButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1730,7 +1729,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2806252687944656795}
         m_MethodName: SetSensitivity
         m_Mode: 0
         m_Arguments:
