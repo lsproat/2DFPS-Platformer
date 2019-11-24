@@ -16,6 +16,7 @@ public class GameUI : MonoBehaviour
     AudioSource gameOverSound;
 
     private bool loseUIShowing = false;
+    private bool winUIShowing = false;
 
     public void Start()
     {
@@ -33,6 +34,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowGameWinUI()
     {
+        winUIShowing = true;
         //Time.timeScale = .0000001f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -42,7 +44,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowGameLoseUI()
     {
-        if (!loseUIShowing)
+        if (!loseUIShowing && !winUIShowing)
         {
             loseUIShowing = true;
             //sound

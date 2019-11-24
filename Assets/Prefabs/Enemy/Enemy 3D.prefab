@@ -410,7 +410,7 @@ MonoBehaviour:
   useCurves: 0
   worldScrollAmount: 0
   shadowMode: 1
-  shadowMapRes: 128
+  shadowMapRes: 16
   shadowBlurPasses: 0
   shadowBlurSize: 0
   renderFullShadows: 0

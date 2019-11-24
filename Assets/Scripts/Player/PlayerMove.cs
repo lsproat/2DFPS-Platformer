@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private string horizontalInputName;
     [SerializeField] private string verticalInputName;
 
+    [SerializeField] private int extraJumps = 1;
+    int currentJumps;
     [SerializeField] private float jumpSpeed = 8.0F;
     [SerializeField] private float gravity = 20.0F;
     [SerializeField] private KeyCode jumpKey;
@@ -91,6 +93,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (charController.isGrounded) // On ground movement
         {
+            currentJumps = extraJumps;
             jumpedHorizInput = 0;
             jumpedVertInput = 0;
 
@@ -109,12 +112,19 @@ public class PlayerMove : MonoBehaviour
         }
         else if (!charController.isGrounded) // In air movement
         {
-            
+            if (Input.GetKeyDown(jumpKey) && currentJumps > 0)
+            {
+                currentJumps--;
+                moveDirection.y = jumpSpeed;
+                jumpedHorizInput = horizInput;
+                jumpedVertInput = vertInput;
+                jumped = true;
+            }
             // If player stops input mid-air, continue momentum
             if (Mathf.Abs(Input.GetAxis(horizontalInputName)) < 1 && Mathf.Abs(Input.GetAxis(verticalInputName)) < 1)
             {
-               moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed * 0.7f;
-               moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed * 0.7f;
+               moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed * 0.6f;
+               moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed * 0.6f;
 
             }
             // enable in air control
