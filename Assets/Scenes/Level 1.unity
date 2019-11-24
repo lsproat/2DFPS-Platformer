@@ -695,6 +695,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3817b96aa67e44f478ed73d8527e96c0, type: 3}
+--- !u!1 &36775425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2151460586251193191, guid: e4eec6e437a08384e94cca1e047ae717,
+    type: 3}
+  m_PrefabInstance: {fileID: 2151460587642225986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &37902121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56243,12 +56249,12 @@ PrefabInstance:
     - target: {fileID: 6765321161334785120, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -140.8
+      value: 51.7
       objectReference: {fileID: 0}
     - target: {fileID: 6765321161334785120, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.75
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 6765321161334785120, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
         type: 3}
@@ -56300,6 +56306,11 @@ PrefabInstance:
       propertyPath: PressToAssassinate
       value: 
       objectReference: {fileID: 96666734}
+    - target: {fileID: 5195425983853555522, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
+        type: 3}
+      propertyPath: ForceFieldCrystal
+      value: 
+      objectReference: {fileID: 36775425}
     - target: {fileID: 6932537042927859928, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3,
         type: 3}
       propertyPath: scoreGUI
@@ -56310,14 +56321,6 @@ PrefabInstance:
       propertyPath: gameUI
       value: 
       objectReference: {fileID: 1461398211}
-    - target: {fileID: 1807228674, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3, type: 3}
-      propertyPath: m_Volume
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 546513372, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3, type: 3}
-      propertyPath: m_Volume
-      value: 0.03
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85dd1c8f6f627ce4a93bd5b25c53cdc3, type: 3}
 --- !u!1 &6765321162764205747 stripped

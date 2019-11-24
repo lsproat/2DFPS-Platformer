@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Global
   - MagicCrystal
+  - Spotlight
   layers:
   - Default
   - TransparentFX

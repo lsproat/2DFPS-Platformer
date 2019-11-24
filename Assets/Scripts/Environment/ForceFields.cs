@@ -13,10 +13,15 @@ public class ForceFields : MonoBehaviour
     AudioSource fieldDown;
     private bool forceFieldUp = true;
 
+    private int enemyCount;
+    [HideInInspector] public int enemiesKilled = 0;
+
     private void Start()
     {
         animate = tutorialText.GetComponent<Animator>();
         fieldDown = GetComponent<AudioSource>();
+
+        enemyCount = enemies3D.transform.childCount;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -43,7 +48,7 @@ public class ForceFields : MonoBehaviour
 
     private void Update()
     {
-        if (enemies3D.transform.childCount == 0 && forceFieldUp)
+        if (enemyCount == enemiesKilled && forceFieldUp)
         {
             forceFieldUp = false;
             fieldDown.Play();
