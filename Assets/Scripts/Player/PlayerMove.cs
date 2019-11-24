@@ -110,8 +110,8 @@ public class PlayerMove : MonoBehaviour
             // If player stops input mid-air, continue momentum
             if (Mathf.Abs(Input.GetAxis(horizontalInputName)) < 1 && Mathf.Abs(Input.GetAxis(verticalInputName)) < 1)
             {
-               moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed;
-               moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed;
+               moveDirection.x = (jumpedHorizInput + horizInput) * movementSpeed * 0.7f;
+               moveDirection.z = (jumpedVertInput + vertInput) * movementSpeed * 0.7f;
 
             }
             // enable in air control
@@ -124,10 +124,10 @@ public class PlayerMove : MonoBehaviour
             moveDirection = playerParent.transform.TransformDirection(moveDirection);
         }
 
-        HandleAnimations(moveDirection);
-
         moveDirection.y -= gravity * Time.deltaTime;
         charController.Move(moveDirection * Time.deltaTime);
+
+        HandleAnimations(moveDirection);
 
     }
 
@@ -142,8 +142,12 @@ public class PlayerMove : MonoBehaviour
         if (horizInput > 0) animate.SetBool("walkingForward", true); // moving forward
         if (horizInput < 0 || (vertInput > 0 || vertInput < 0)) animate.SetBool("walkingBackwards", true); // moving backwards
         if ((horizInput > 0 || horizInput < 0) && isSprinting) animate.SetBool("sprinting", true); //sprinting
-        if (!isSprinting) animate.SetBool("sprinting", false);
-        if (jumped) animate.SetBool("Jump", true);
+        if (!isSprinting || (horizInput == 0 && vertInput == 0)) animate.SetBool("sprinting", false);
+        if (jumped)
+        {
+            //play sound HERE
+            animate.SetBool("Jump", true);
+        }
 
         else if (charController.isGrounded) animate.SetBool("Jump", false);
 

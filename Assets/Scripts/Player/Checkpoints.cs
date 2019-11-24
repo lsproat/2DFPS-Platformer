@@ -7,10 +7,13 @@ public class Checkpoints : MonoBehaviour
     Vector3 levelStartPlayerPos;
 
     public GameObject gameUI;
+    public GameObject deathSoundGO;
+    public GameObject winSoundGO;
     GameUI ui;
     CameraSwitcher pos;
     CharacterController charController;
-
+    AudioSource deathSound;
+    AudioSource winSound;
 
     private void Start()
     {
@@ -18,6 +21,8 @@ public class Checkpoints : MonoBehaviour
         pos = GetComponent<CameraSwitcher>();
 
         charController = GetComponent<CharacterController>();
+        deathSound = deathSoundGO.GetComponent<AudioSource>();
+        winSound = winSoundGO.GetComponent<AudioSource>();
         levelStartPlayerPos = transform.position;
     }
 
@@ -25,9 +30,14 @@ public class Checkpoints : MonoBehaviour
     {
         if (other.gameObject.tag == "Reload")
         {
+            deathSound.Play();
             RestartFromCheckpoint();
         }
-        else if (other.gameObject.tag == "Win") ui.ShowGameWinUI();
+        else if (other.gameObject.tag == "Win")
+        {
+            winSound.Play();
+            ui.ShowGameWinUI();
+        }
     }
 
     public void RestartFromCheckpoint()

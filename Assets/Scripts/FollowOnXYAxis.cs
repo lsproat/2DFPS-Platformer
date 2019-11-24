@@ -9,6 +9,6 @@ public class FollowOnXYAxis : MonoBehaviour
 
     void Update()
     {
-       transform.position = new Vector3(target.transform.position.x, target.transform.position.y+higherOnY, transform.position.z);
+       transform.position = new Vector3(target.transform.position.x, target.transform.position.y+higherOnY, target.transform.position.z - 30);
     }
 }

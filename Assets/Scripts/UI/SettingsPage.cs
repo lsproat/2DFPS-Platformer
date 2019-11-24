@@ -55,7 +55,6 @@ public class SettingsPage : MonoBehaviour
             //set slider val
             sensitivity.value = wantedSens;
             SetSensitivity(wantedSens);
-            Debug.Log("wanted sens: "+ 0);
         }
         else
         {

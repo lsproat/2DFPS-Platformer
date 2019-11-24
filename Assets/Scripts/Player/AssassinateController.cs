@@ -5,8 +5,10 @@ using UnityEngine;
 public class AssassinateController : MonoBehaviour
 {
     public GameObject PressToAssassinate;
+    public GameObject meleeSoundGO;
     private HandleScore scoreScript;
     private GameObject enemy;
+    AudioSource meleeSound;
 
     public GameObject model3D;
 
@@ -20,6 +22,7 @@ public class AssassinateController : MonoBehaviour
     {
         scoreScript = gameObject.GetComponent<HandleScore>();
         animate = model3D.GetComponent<Animator>();
+        meleeSound = meleeSoundGO.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,6 +46,7 @@ public class AssassinateController : MonoBehaviour
         if (Input.GetKeyDown(Melee) && assassinateAnimationDone && model3D.activeSelf)
         {
             animate.SetTrigger("attack");
+            meleeSound.PlayDelayed(0.2f);
             assassinateAnimationDone = false;
         }
     }

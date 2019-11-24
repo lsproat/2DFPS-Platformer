@@ -16,7 +16,11 @@ public class RestartLevel : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Reload") SceneManager.LoadScene(1);
-        else if (other.gameObject.tag == "Win") ui.ShowGameWinUI();
+        else if (other.gameObject.tag == "Win")
+        {
+            Destroy(other.gameObject);
+            ui.ShowGameWinUI();
+        }
     }
 
     public void UIButtonRetry()

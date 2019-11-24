@@ -10,11 +10,13 @@ public class ForceFields : MonoBehaviour
     public GameObject[] fields;
     Animator animate;
 
+    AudioSource fieldDown;
     private bool forceFieldUp = true;
 
     private void Start()
     {
         animate = tutorialText.GetComponent<Animator>();
+        fieldDown = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -41,9 +43,10 @@ public class ForceFields : MonoBehaviour
 
     private void Update()
     {
-        if(enemies3D.transform.childCount == 0)
+        if (enemies3D.transform.childCount == 0 && forceFieldUp)
         {
             forceFieldUp = false;
+            fieldDown.Play();
             foreach (GameObject gates in fields)
             {
                 gates.SetActive(false);

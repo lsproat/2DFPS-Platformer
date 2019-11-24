@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         input.inputActive = true;
         Time.timeScale = 1;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         if (pauseMenuUI.activeSelf) pauseMenuUI.SetActive(false);
         else settingsMenuUI.SetActive(false);

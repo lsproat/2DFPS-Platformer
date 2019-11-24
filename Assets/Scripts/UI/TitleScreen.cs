@@ -57,6 +57,7 @@ public class TitleScreen : MonoBehaviour
     public void LoadLevelOne()
     {
         buttonSound.Play();
+        Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene(1);
     }
 }
