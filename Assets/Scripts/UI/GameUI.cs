@@ -35,7 +35,7 @@ public class GameUI : MonoBehaviour
     public void ShowGameWinUI()
     {
         winUIShowing = true;
-        //Time.timeScale = .0000001f;
+        Time.timeScale = .0000001f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         gameWinUI.SetActive(true);
