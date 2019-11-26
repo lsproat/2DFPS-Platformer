@@ -20,6 +20,8 @@ public class Guard3D : MonoBehaviour
     Transform player;
     public GameObject canvas;
 
+    public float addedHeadHeight;
+
     float viewAngle;
     float playerVisibleTimer;
 
@@ -59,7 +61,7 @@ public class Guard3D : MonoBehaviour
 
     bool CanSeePlayer()
     {
-        if(Vector3.Distance(transform.position, player.position) < viewDistance)
+        if(Vector3.Distance(new Vector3(transform.position.x, transform.position.y + addedHeadHeight, transform.position.z), player.position) < viewDistance)
         {
             Vector3 dirToPlayer = (player.position - transform.position).normalized;
             float angleBetweenGuardAndPlayer = Vector3.Angle(transform.forward, dirToPlayer);
@@ -142,6 +144,6 @@ public class Guard3D : MonoBehaviour
         Gizmos.DrawLine(previousPosition, startPosition);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
+        Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + addedHeadHeight, transform.position.z), transform.forward * viewDistance);
     }
 }

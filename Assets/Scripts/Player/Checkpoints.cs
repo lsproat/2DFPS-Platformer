@@ -36,6 +36,7 @@ public class Checkpoints : MonoBehaviour
         else if (other.gameObject.tag == "Win")
         {
             winSound.Play();
+            Destroy(other.gameObject);
             ui.ShowGameWinUI();
         }
     }

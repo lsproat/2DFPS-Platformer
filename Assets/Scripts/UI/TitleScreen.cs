@@ -8,6 +8,7 @@ public class TitleScreen : MonoBehaviour
     public GameObject settings;
     public GameObject mainMenuIcons;
     public GameObject levelSelect;
+    public GameObject credits;
 
     AudioSource buttonSound;
 
@@ -39,6 +40,14 @@ public class TitleScreen : MonoBehaviour
 
     }
 
+    public void creditsButton()
+    {
+        buttonSound.Play();
+        credits.SetActive(true);
+        mainMenuIcons.SetActive(false);
+
+    }
+
     public void backButton()
     {
         if (settings.activeSelf)
@@ -49,6 +58,11 @@ public class TitleScreen : MonoBehaviour
         else if (levelSelect.activeSelf)
         {
             levelSelect.SetActive(false);
+            mainMenuIcons.SetActive(true);
+        }
+        else if (credits.activeSelf)
+        {
+            credits.SetActive(false);
             mainMenuIcons.SetActive(true);
         }
         buttonSound.Play();
