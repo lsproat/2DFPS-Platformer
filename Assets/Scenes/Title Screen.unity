@@ -3792,8 +3792,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -330.55, y: -367}
-  m_SizeDelta: {x: 7654.1, y: 5105.3}
+  m_AnchoredPosition: {x: -337, y: -369}
+  m_SizeDelta: {x: 7654.1, y: 3141.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &447011166
 MonoBehaviour:
@@ -3816,8 +3816,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2632c0cb9c1607a48a9ccd1d835f07b9, type: 3}
-    m_FontSize: 0
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 298
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
@@ -3828,10 +3828,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Camera Ortho to Perspective Script:  https://forum.unity.com/threads/smooth-transition-\nbetween-perspective-and-orthographic-modes.32765/\r\nLerp
-    Script:  https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/\n2D
-    Controller Script:  https://www.youtube.com/watch?v=MbWK8bCAU2w\nFP Controller
-    Script: https://www.youtube.com/watch?v=b7bmNDdYPzU\n"
+  m_Text: "Camera Ortho to Perspective Script: forum.unity.com/threads/smooth-transition-
+    between-perspective-and-orthographic-modes.32765/\r\nLerp Script: chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/\n2D
+    Controller: youtube.com/watch?v=MbWK8bCAU2w\n3D Controller: youtube.com/watch?v=b7bmNDdYPzU\n"
 --- !u!222 &447011167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9365,6 +9364,86 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 919981197}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &923684261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 923684262}
+  - component: {fileID: 923684264}
+  - component: {fileID: 923684263}
+  m_Layer: 5
+  m_Name: Asset Body (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &923684262
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923684261}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.07540369, y: 0.07540369, z: 0.07540369}
+  m_Children: []
+  m_Father: {fileID: 1932935967}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 14, y: -209}
+  m_SizeDelta: {x: 18561.4, y: 1051}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &923684263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923684261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 300
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Note: Many assets were heavliy changed to fit this project so they were
+    only used as a starting point and not directly copied.'
+--- !u!222 &923684264
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923684261}
+  m_CullTransparentMesh: 0
 --- !u!1001 &934602871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11585,7 +11664,7 @@ PrefabInstance:
     - target: {fileID: 2806252687944656797, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2806252687944656796, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
@@ -11695,27 +11774,27 @@ PrefabInstance:
     - target: {fileID: 5287264175559391336, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5287264175559391336, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5287264175559391336, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 313476077579758286, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 313476077579758286, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2806252689278175096, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
@@ -11730,27 +11809,27 @@ PrefabInstance:
     - target: {fileID: 2806252688084580947, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2806252688084580947, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2806252688623503454, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2806252688623503454, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2806252688623503454, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2806252688435674145, guid: c7a74b5acfce9be42a388d7c1aee8a2d,
         type: 3}
@@ -13138,7 +13217,7 @@ MonoBehaviour:
 
     Grant Wydeven - Playtesting
 
-    Tanner Wisecarver - Playtesting
+    T Wisecarver - Playtesting
 
 '
 --- !u!222 &1218148008
@@ -22726,7 +22805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1932935967
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22752,6 +22831,7 @@ RectTransform:
   - {fileID: 1512439046}
   - {fileID: 1176774910}
   - {fileID: 1974780973}
+  - {fileID: 923684262}
   m_Father: {fileID: 1604645351}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23666,8 +23746,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 406, y: -342}
-  m_SizeDelta: {x: 7397.9, y: 4149.5}
+  m_AnchoredPosition: {x: 389.2, y: -357.5}
+  m_SizeDelta: {x: 7713.7, y: 3419.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1974780974
 MonoBehaviour:
@@ -23690,7 +23770,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2632c0cb9c1607a48a9ccd1d835f07b9, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 0
     m_FontStyle: 0
     m_BestFit: 1
